@@ -1,0 +1,47 @@
+# Turn off that annoying start up message
+startup_message off
+
+# Turn the even more annoying whole-screen-flash-on-tab-complete "feature"
+vbell off
+
+# Window list at the bottom. hostname, centered tabs and redmarked active windows:
+#caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
+hardstatus alwayslastline
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+# Status line of ultimate win!
+# hardstatus alwayslastline
+# See the "STRING ESCAPES" section of the screen manpage
+# A note on colours: %{abc} where a is things like d for dim, b for bold, ..
+#       b is the background colour
+#       c is the foreground colour
+#   A . in any of those places indicates that setting should not be changed
+# 1 - Bold white background and black foreground
+# 2 - List all windows before the current window
+# 3 - Show the current window with a blue background
+# 4 - List the remaining windows with a blue background
+# 5 - Pad to the width of the screen.  This makes the rest right justified.
+# 6 - Show the hostname
+# 7 - Show the date in ISO8601 and the time in 24 hour
+#                   1     2     3     4        5    6        7
+#hardstatus string "%{bWK}%-w%{.bW}%n %t%{-}%+w %=%l [%H] [%Y-%m-%d] [%c]"
+caption always "%{bWK}%-w%{.bW}%n %t%{-}%+w %=%l [%H] [%Y-%m-%d] [%c]"
+
+defscrollback 10000
+
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
+
+bind s eval "copy"
+
+bind j focus down
+bind k focus up
+bind h focus left
+bind l focus right
+
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I".
+# # tell screen how to set colors. AB = background, AF=foreground.
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' #]]'
