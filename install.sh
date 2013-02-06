@@ -44,5 +44,5 @@ myLink $installDir/screen/.screenrc $HOME/.screenrc
 myLink $installDir/bash/.bashrc $HOME/.bashrc
 myLink $installDir/bash/.bash_aliases $HOME/.bash_aliases
 myLink $installDir/bash/.bash_ps1 $HOME/.bash_ps1
-yLink $installDir/vim/.vimrc.local $HOME/.vimrc.local
+myLink $installDir/vim/.vimrc.local $HOME/.vimrc.local
 myLink $installDir/vim/.vimrc.bundles.local $HOME/.vimrc.bundles.local
