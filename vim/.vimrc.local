@@ -1,12 +1,14 @@
-set nornu
-set nospell
-set whichwrap=
+" Disable line numbers
 set nonumber
+set norelativenumber
+
+set whichwrap=
 set tags=tags;/
 set timeout ttimeoutlen=50
 set mouse=
 set ai
 set noerrorbells visualbell t_vb=
+
 if has('autocmd')
     autocmd GUIEnter * set visualbell t_vb=
 endif
@@ -15,33 +17,29 @@ map <F5> <Esc>:bp<CR>
 map <F6> <Esc>:bn<CR>
 map <F7> <Esc>:tabp<CR>
 map <F8> <Esc>:tabn<CR>
+
+" Toggle line numbers when I want them
 map <F9> <Esc>:set nonumber!<CR>
+
+" Open/Close NERDTree
 map <F12> <Esc>:NERDTreeToggle<CR>
 
+" Use Ctrl + [hjkl] to navigate windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-map <C-G> :silent execute "!gits % &>/dev/null &" \| redraw!<CR>
-
 " Macro for navigating through a merge conflict
-let @a='/\(<<<<<<<\|=======\|>>>>>>>\)'
+let @a='/\(<<<<<<<\|=======\|>>>>>>>\)\r'
+
 " Macro to surround a line with curly braces
 let @s='VS{kJj^'
+
 let @t=":Tab/\\(\\(;\\)\\@<= *\\|=\\)"
+
 " make the contents of curly braces a manual fold
 let @f="?{jVn%kzf"
-
-
-" Show syntax highlighting groups for word under cursor
-" nmap <C-I> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
 
 " Smartly align things like arrays
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
@@ -56,25 +54,12 @@ function! s:align()
     endif
 endfunction
 
-" Sync out changes in TimeIPS-server whenever you save
-function! s:runGits()
-    silent execute "!gits > /dev/null 2>&1 &"
-    execute "redraw!"
-    endfunction
-
-autocmd BufWritePost * call s:runGits()
-
-" For local replace
-nnoremap gR gd[{V%:s/<C-R>///gc<left><left><left>
-
-" For global replace
-nnoremap gr gD:%s/<C-R>///gc<left><left><left>"}]"
-
 " Folding options
 set foldmarker={,}
 set foldlevel=0
 set foldmethod=marker
 
-filetype plugin indent on
-
-" Bundle 'vim-xdebug'
+" Hook to make local-er changes
+if filereadable(expand("~/.vimrc.machinespecific"))
+    source ~/.vimrc.machinespecific
+endif
