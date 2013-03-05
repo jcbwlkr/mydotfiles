@@ -13,8 +13,10 @@ if has('autocmd')
     autocmd GUIEnter * set visualbell t_vb=
 endif
 
+" Easily navigate open buffers
 map <F5> <Esc>:bp<CR>
 map <F6> <Esc>:bn<CR>
+" Easily navigate open tabs
 map <F7> <Esc>:tabp<CR>
 map <F8> <Esc>:tabn<CR>
 
@@ -24,40 +26,18 @@ map <F9> <Esc>:set nonumber!<CR>
 " Open/Close NERDTree
 map <F12> <Esc>:NERDTreeToggle<CR>
 
-" Use Ctrl + [hjkl] to navigate windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
 " Macro for navigating through a merge conflict
-let @a='/\(<<<<<<<\|=======\|>>>>>>>\)\r'
+let @a='/\(<<<<<<<\|=======\|>>>>>>>\)'
 
 " Macro to surround a line with curly braces
 let @s='VS{kJj^'
 
-let @t=":Tab/\\(\\(;\\)\\@<= *\\|=\\)"
-
 " make the contents of curly braces a manual fold
 let @f="?{jVn%kzf"
 
-" Smartly align things like arrays
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-function! s:align()
-    let p = '^\s*|\s.*\s|\s*$'
-    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-        Tabularize/|/l1
-        normal! 0
-        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-    endif
-endfunction
-
-" Folding options
-set foldmarker={,}
-set foldlevel=0
-set foldmethod=marker
+" Macro to strip trailing whitespace.
+" I don't like having this always on so I invoke it on command.
+let @w=':%s/ \+$//'
 
 " Hook to make local-er changes
 if filereadable(expand("~/.vimrc.machinespecific"))
