@@ -10,7 +10,7 @@ function installPackage() {
         sudo yum --assumeyes install $package
     fi
 }
-dependencies=( git vim tmux python-pip rubygems )
+dependencies=( git vim tmux python-pip rubygems ctags )
 for i in "${dependencies[@]}"; do
     installPackage $i
 done;
@@ -24,7 +24,7 @@ $HOME/.homeshick --batch --force pull
 $HOME/.homeshick --force symlink
 
 # spf13-vim
-sh <(curl http://bit.ly/VwL2wR -L )
+sh <( curl http://bit.ly/VwL2wR -L )
 
 # Powerline
 if [ $(which pip) != "" ]; then

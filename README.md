@@ -1,4 +1,9 @@
 mydotfiles
 ==========
 
-My config files to minimize setup time after installing a new OS
+My config files to keep all of my machines (and myself) sane.
+
+Install / update with
+```sh
+bash <( curl http://bit.ly/jacobwalker -L )
+```
