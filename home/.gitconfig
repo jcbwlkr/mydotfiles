@@ -3,3 +3,5 @@
     email = jacob@tortugas-llc.com
 [color]
     ui = auto
+[push]
+    default = simple

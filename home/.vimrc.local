@@ -1,4 +1,3 @@
-" Disable line numbers
 set nonumber
 set norelativenumber
 
@@ -23,21 +22,27 @@ map <F8> <Esc>:tabn<CR>
 " Toggle line numbers when I want them
 map <F9> <Esc>:set nonumber!<CR>
 
-" Open/Close NERDTree
-map <F12> <Esc>:NERDTreeToggle<CR>
-
 " Macro for navigating through a merge conflict
 let @a='/\(<<<<<<<\|=======\|>>>>>>>\)'
 
 " Macro to surround a line with curly braces
 let @s='VS{kJj^'
 
-" make the contents of curly braces a manual fold
-let @f="?{jVn%kzf"
+" Macro to ack for the current word
+let @f=":Ack '\b\b' "
 
 " Macro to strip trailing whitespace.
 " I don't like having this always on so I invoke it on command.
 let @w=':%s/ \+$//'
+
+" Macro to save and run current executable file
+let @r=':w:!./%'
+
+" Macro to change a setter to an assertEquals and a getter
+let @e='^i$this->assertEquals(f(ldt)li)F(F(pa, />setlrg:noh^j'
+
+" Macro for TimeIPS to add a namespace to this file
+let @n='i<?php:.!echo "%:p":.s/^.*include\/classes\///inamespace :.s/\//\\/g/\.phpDF\xi;class o{}kk$'
 
 " Hook to make local-er changes
 if filereadable(expand("~/.vimrc.machinespecific"))
