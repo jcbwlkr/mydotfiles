@@ -47,6 +47,7 @@ export EDITOR=/usr/bin/vim
 
 # powerline prompt
 export PATH="${PATH}:${HOME}/.local/bin"
+export XDG_CONFIG_HOME="${HOME}/.my_config"
 . $(find ${HOME}/.local/ -wholename "*powerline/bindings/bash/powerline.sh")
 
 # Hook to make local changes
