@@ -16,12 +16,15 @@ for i in "${dependencies[@]}"; do
 done;
 
 # Install homeshick
-wget -O - 'https://raw.github.com/andsens/homeshick/master/install.sh' | bash
+if [! -e ${HOME}/.homesick]; then
+    git clone git://github.com/andsens/homeshick.git ${HOME}/.homesick/repos/homeshick
+    ${HOME}/.homesick/repos/homeshick/home/.homeshick link
+fi
 
 # Get homeshick castles
-$HOME/.homeshick --batch clone git@github.com:jacobwalker0814/mydotfiles.git
-$HOME/.homeshick --batch --force pull
-$HOME/.homeshick --force symlink
+${HOME}/.homeshick --batch clone git@github.com:jacobwalker0814/mydotfiles.git
+${HOME}/.homeshick --batch --force pull
+${HOME}/.homeshick --force symlink
 
 # spf13-vim
 sh <( curl http://bit.ly/VwL2wR -L )
