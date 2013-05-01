@@ -45,10 +45,9 @@ fi
 
 export EDITOR=/usr/bin/vim
 
-# Define our PS1 prompt
-if [ -f ~/.bash_ps1 ]; then
-    . ~/.bash_ps1
-fi
+# powerline prompt
+export PATH="${PATH}:${HOME}/.local/bin"
+. $(find ${HOME}/.local/ -wholename "*powerline/bindings/bash/powerline.sh")
 
 # Hook to make local changes
 if [ -f ~/.bashrc_local ]; then
