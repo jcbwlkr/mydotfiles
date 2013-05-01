@@ -27,7 +27,7 @@ ${HOME}/.homeshick --batch --force pull
 ${HOME}/.homeshick --force symlink
 
 # spf13-vim
-sh <( curl http://bit.ly/VwL2wR -L )
+sh <( curl http://bit.ly/jacobwalker0814-spf13-vim -L )
 
 # Powerline
 if [ $(which pip) != "" ]; then
