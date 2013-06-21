@@ -4,9 +4,9 @@
 function installPackage() {
     local package=$1
     echo "** Installing package ${package} **"
-    if [ $(which apt-get) != "" ]; then
+    if [ $(which apt-get 2>/dev/null) != "" ]; then
         sudo apt-get --assume-yes install $package
-    elif [ $(which yum) != "" ]; then
+    elif [ $(which yum 2>/dev/null) != "" ]; then
         sudo yum --assumeyes install $package
     fi
 }
@@ -15,20 +15,6 @@ for i in "${dependencies[@]}"; do
     installPackage $i
 done;
 
-# Install homeshick
-if [ ! -e ${HOME}/.homesick ]; then
-    git clone git://github.com/andsens/homeshick.git ${HOME}/.homesick/repos/homeshick
-    ${HOME}/.homesick/repos/homeshick/home/.homeshick link
-fi
-
-# Get homeshick castles
-${HOME}/.homeshick --batch clone git@github.com:jacobwalker0814/mydotfiles.git
-${HOME}/.homeshick --batch --force pull
-${HOME}/.homeshick --force symlink
-
-# spf13-vim
-sh <( curl http://bit.ly/jacobwalker0814-spf13-vim -L )
-
 # Powerline
 if [ $(which pip) != "" ]; then
     pip install --user git+git://github.com/Lokaltog/powerline
@@ -36,5 +22,13 @@ elif [ $(which python-pip) != "" ]; then
     python-pip install --user git+git://github.com/Lokaltog/powerline
 fi
 
-# Tmuxinator
 sudo gem install tmuxinator
+sudo gem install homesick
+
+# Get homesick castles
+homesick clone git@github.com:jacobwalker0814/mydotfiles.git
+homesick pull --force --all
+homesick symlink mydotfiles
+
+# spf13-vim
+sh <( curl http://bit.ly/jacobwalker0814-spf13-vim -L )
