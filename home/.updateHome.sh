@@ -4,9 +4,9 @@
 function installPackage() {
     local package=$1
     echo "** Installing package ${package} **"
-    if [ $(which apt-get 2>/dev/null) != "" ]; then
+    if [ "x"$(which apt-get 2>/dev/null) != "x" ]; then
         sudo apt-get --assume-yes install $package
-    elif [ $(which yum 2>/dev/null) != "" ]; then
+    elif [ "x"$(which yum 2>/dev/null) != "x" ]; then
         sudo yum --assumeyes install $package
     fi
 }
