@@ -5,7 +5,7 @@ alias 'rmorig'='find -type f -name *.orig -exec rm -i {} \;'
 alias 'rmrej'='find -type f -name *.rej -exec rm -i {} \;'
 alias 'rmdotdirfiles'='find -type f -name ".directory" -exec rm -i {} \;'
 alias 'open'='xdg-open'
-alias 'ack'='ack --color-match="bright_black on_bright_white"'
+alias 'ack'='ack --color-match="bright_black on_bright_white" --ignore-dirs=Fixtures'
 alias 'stripWhiteSpace'='egrep -rlI " +$" * | xargs -I {} sed -i "s/ \+$//" {}'
 
 changeChromeKey() {
@@ -54,3 +54,8 @@ function whatIsLeftToTest() {
 #find -name "*php" -exec perl -0777 -pi -e "s/( *)(\* \@param.*\n)( *\* \@return)/\1\2\1*\n\3/gm" {} \;
 
 alias 'tmux'='tmux -2'
+
+
+function retag2-0-0() {
+    git tag -d rel-2-0-0 && git push origin :refs/tags/rel-2-0-0 && git tag -a rel-2-0-0 -m "Tagging 2.0.0 for testing" && git push --tags
+}

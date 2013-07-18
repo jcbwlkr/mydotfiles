@@ -59,3 +59,10 @@ export TERM='xterm-256color'
 if [ -f ~/.bashrc_local ]; then
     . ~/.bashrc_local
 fi
+
+export PATH="/usr/local/heroku/bin:$PATH"
+
+if [ -f ~/.rvm/scripts/rvm ]; then
+    . ~/.rvm/scripts/rvm
+fi
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

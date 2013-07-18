@@ -23,7 +23,10 @@ map <F8> <Esc>:tabn<CR>
 map <F9> <Esc>:set nonumber!<CR>
 
 " Macro for navigating through a merge conflict
-let @a='/\(<<<<<<<\|=======\|>>>>>>>\)'
+let @a='/^\(<<<<<<<\|=======\|>>>>>>>\)'
+
+" OMG just accept HEAD and be done with this freaking merge
+let @m='zRgg@addknVndnzt@q'
 
 " Macro to surround a line with curly braces
 let @s='VS{kJj^'
@@ -48,3 +51,6 @@ let @n='i<?php:.!echo "%:p":.s/^.*include\/classes\///inamespace :.s/\//\\
 if filereadable(expand("~/.vimrc.machinespecific"))
     source ~/.vimrc.machinespecific
 endif
+
+" let g:neocomplcache_enable_auto_select = 0
+let g:neocomplcache_disable_auto_complete = 1
