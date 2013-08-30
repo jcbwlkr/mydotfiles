@@ -24,11 +24,11 @@
 			}
 		},
 		"shell": {
-			"colorscheme": "default",
+			"colorscheme": "solarized",
 			"theme": "default_leftonly"
 		},
 		"tmux": {
-			"colorscheme": "default",
+			"colorscheme": "solarized",
 			"theme": "default"
 		},
 		"vim": {

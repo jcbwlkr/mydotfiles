@@ -53,8 +53,6 @@ export EDITOR=/usr/bin/vim
 export PATH="${PATH}:${HOME}/.local/bin"
 . $(find ${HOME}/.local/ -wholename "*powerline/bindings/bash/powerline.sh")
 
-export TERM='xterm-256color'
-
 # Hook to make local changes
 if [ -f ~/.bashrc_local ]; then
     . ~/.bashrc_local
