@@ -22,6 +22,9 @@ map <F8> <Esc>:tabn<CR>
 " Toggle line numbers when I want them
 map <F9> <Esc>:set nonumber!<CR>
 
+" In visual mode have Ctrl+c copy selection to xclip
+vnoremap <C-c> !xclip -f<CR>
+
 " Macro for navigating through a merge conflict
 let @a='/^\(<<<<<<<\|=======\|>>>>>>>\)'
 
@@ -54,3 +57,30 @@ endif
 
 " let g:neocomplcache_enable_auto_select = 0
 let g:neocomplcache_disable_auto_complete = 1
+
+
+
+" Autocmd to keep NERDTree file hierarchy in sync with the current file
+" Taken largely from Lambert at http://superuser.com/questions/195022 with some
+" minor modifications
+
+" returns true if NERDTree is open/active
+function! rc:isNTOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" returns true if focused window is NERDTree window
+function! rc:isNTFocused()
+  return -1 != match(expand('%'), 'NERD_Tree')
+endfunction
+
+" calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
+function! rc:syncTree()
+  if &modifiable && rc:isNTOpen() && !rc:isNTFocused() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind         " Move to current buffer in tree
+    execute "normal! zz" |" Scroll window so cursor is centered
+    wincmd p             " Return cursor to open buffer
+  endif
+endfunction
+
+autocmd BufEnter * call rc:syncTree()
