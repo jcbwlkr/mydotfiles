@@ -37,6 +37,3 @@ if [ ! -e ~/.gconf/apps/gnome-terminal/profiles/Solarized ]; then
     ./solarize
     cd -
 fi
-
-# spf13-vim
-sh <( curl http://bit.ly/jacobwalker0814-spf13-vim -L )

@@ -1,86 +1,0 @@
-set nonumber
-set norelativenumber
-
-set whichwrap=
-set tags=tags;/
-set timeout ttimeoutlen=50
-set mouse=
-set ai
-set noerrorbells visualbell t_vb=
-
-if has('autocmd')
-    autocmd GUIEnter * set visualbell t_vb=
-endif
-
-" Easily navigate open buffers
-map <F5> <Esc>:bp<CR>
-map <F6> <Esc>:bn<CR>
-" Easily navigate open tabs
-map <F7> <Esc>:tabp<CR>
-map <F8> <Esc>:tabn<CR>
-
-" Toggle line numbers when I want them
-map <F9> <Esc>:set nonumber!<CR>
-
-" In visual mode have Ctrl+c copy selection to xclip
-vnoremap <C-c> !xclip -f<CR>
-
-" Macro for navigating through a merge conflict
-let @a='/^\(<<<<<<<\|=======\|>>>>>>>\)'
-
-" OMG just accept HEAD and be done with this freaking merge
-let @m='zRgg@addknVndnzt@q'
-
-" Macro to surround a line with curly braces
-let @s='VS{kJj^'
-
-" Macro to ack for the current word
-let @f=":Ack '\b\b' "
-
-" Macro to strip trailing whitespace.
-" I don't like having this always on so I invoke it on command.
-let @w=':%s/ \+$//'
-
-" Macro to save and run current executable file
-let @r=':w:!./%'
-
-" Macro to change a setter to an assertEquals and a getter
-let @e='^i$this->assertEquals(f(ldt)li)F(F(pa, />setlrg:noh^j'
-
-" Macro for TimeIPS to add a namespace to this file
-let @n='i<?php:.!echo "%:p":.s/^.*include\/classes\///inamespace :.s/\//\\/g/\.phpDF\xi;class o{}kk$'
-
-" Hook to make local-er changes
-if filereadable(expand("~/.vimrc.machinespecific"))
-    source ~/.vimrc.machinespecific
-endif
-
-" let g:neocomplcache_enable_auto_select = 0
-let g:neocomplcache_disable_auto_complete = 1
-
-
-
-" Autocmd to keep NERDTree file hierarchy in sync with the current file
-" Taken largely from Lambert at http://superuser.com/questions/195022 with some
-" minor modifications
-
-" returns true if NERDTree is open/active
-function! rc:isNTOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" returns true if focused window is NERDTree window
-function! rc:isNTFocused()
-  return -1 != match(expand('%'), 'NERD_Tree')
-endfunction
-
-" calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
-function! rc:syncTree()
-  if &modifiable && rc:isNTOpen() && !rc:isNTFocused() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind         " Move to current buffer in tree
-    execute "normal! zz" |" Scroll window so cursor is centered
-    wincmd p             " Return cursor to open buffer
-  endif
-endfunction
-
-autocmd BufEnter * call rc:syncTree()
