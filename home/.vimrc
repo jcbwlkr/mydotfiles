@@ -1,15 +1,27 @@
-" About <<
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker=<<,>> foldlevel=0 foldmethod=marker spell:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=0 foldmethod=marker spell:
 "
-" .vimrc for Jacob Walker (@jacobwalker0814)
+" Personal .vimrc of Jacob Walker (@jacobwalker0814)
+"
+"    _             _                _ _            __  ___ _ _ _
+"   (_)__ _ __ ___| |____ __ ____ _| | |_____ _ _ /  \( _ ) | | |
+"   | / _` / _/ _ \ '_ \ V  V / _` | | / / -_) '_| () / _ \ |_  _|
+"  _/ \__,_\__\___/_.__/\_/\_/\__,_|_|_\_\___|_|  \__/\___/_| |_|
+" |__/
+"
+" This file is intended to be a (mostly) stand alone configuration for
+" everything I use in Vim. The first time you open vim with this config it
+" will clone vundle and install all configured plugins.
+"
 " Draws heavily from http://vim.spf13.com/
-"
-" >>
-" Setup <<
+
+" Setup {{
     " First thing's first, don't try to preserve vi compatibility. This has to
     " be first because it affects the rest of this vimrc.
     set nocompatible
-    " Vundle <<
+
+    set shortmess+=filmnrxoOtT " Abbreviation of messages (avoids 'hit enter')
+
+    " Vundle {{
         fun! SetupVundle()
             " Define our install dir and add it to our runtime path
             let plugin_root_dir = expand('$HOME', 1) . '/.vim/bundle'
@@ -30,17 +42,19 @@
             Plugin 'gmarik/vundle'
         endfun
         call SetupVundle()
-    " >>
+    " }}
+
     filetype plugin indent on   " Automatically detect file types.
-" >>
-" General Settings <<
+" }}
+
+" General Settings {{
     scriptencoding utf-8
 
     " Use SPACE for <leader>. Need to map this early so references to <leader>
     " below use the new mapping
     let mapleader = ' '
 
-    " Views, Backups, Swap, Info and Undo files <<
+    " Views, Backups, Swap, Info and Undo files {{
         set viminfo+=n~/.vim/viminfo " Store the viminfo file in ~/.vim/
         set history=1000             " Store a ton of history (default is 20)
 
@@ -76,8 +90,9 @@
             endfor
         endfunction
         call InitializeDirectories()
-    " >>
-    " Text Formatting <<
+    " }}
+
+    " Text Formatting {{
         function! SetTabWidth(width)
             exec "set shiftwidth=" . a:width
             exec "set tabstop=" . a:width
@@ -99,13 +114,14 @@
         " Use list and listchars to highlight undesired whitespace
         set list
         set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
-    " >>
-    " Search <<
+    " }}
+
+    " Search {{
         set incsearch                   " Find as you type search
         set hlsearch                    " Highlight search terms
         set ignorecase                  " Case insensitive search
         set smartcase                   " Case sensitive when upper case characters are present
-    " >>
+    " }}
 
     set number
     set norelativenumber
@@ -122,10 +138,10 @@
         autocmd GUIEnter * set visualbell t_vb=
     endif
 
-    " Tabs and Buffers <<
+    " Tabs and Buffers {{
         set tabpagemax=15               " Only show 15 tabs
         set hidden                 " Allow buffer switching without saving
-    " >>
+    " }}
 
     set cursorline                  " Highlight current line
 
@@ -145,19 +161,22 @@
     set splitbelow                  " Puts new split windows to the bottom of the current
     set showmatch                   " Show matching brackets/parenthesis
     set matchpairs+=<:>             " Match < and > with %
-" >>
-" Plugins <<
-    " TODO Do I need? <<
+" }}
+
+" Plugins {{
+    " TODO Do I need? {{
         "Plugin 'MarcWeber/vim-addon-mw-utils'
         "Plugin 'tomtom/tlib_vim'
         " TODO snippets?
-    " >>
-    " Colors and UI <<
+    " }}
+
+    " Colors and UI {{
         Plugin 'bling/vim-airline'
         Plugin 'godlygeek/csapprox'
         Plugin 'altercation/vim-colors-solarized'
-    " >>
-    " IDE-Like Utility <<
+    " }}
+
+    " IDE-Like Utility {{
         Plugin 'scrooloose/nerdtree'
         Plugin 'jistr/vim-nerdtree-tabs'
         Plugin 'godlygeek/tabular'
@@ -171,62 +190,75 @@
         Plugin 'tpope/vim-surround'
         Plugin 'vim-scripts/restore_view.vim'
         Plugin 'vim-scripts/sessionman.vim'
-    " >>
-    " Version Control <<
+    " }}
+
+    " Version Control {{
         Plugin 'mhinz/vim-signify'
         Plugin 'tpope/vim-fugitive'
-    " >>
-    " Navigation <<
+    " }}
+
+    " Navigation {{
         Plugin 'skwp/vim-easymotion'
         Plugin 'matchit.zip'
-    " >>
-    " HTML / CSS <<
+    " }}
+
+    " HTML / CSS {{
         Plugin 'groenewege/vim-less'
         Plugin 'hail2u/vim-css3-syntax'
-    " >>
-    " PHP <<
+    " }}
+
+    " PHP {{
         Plugin 'spf13/PIV'
         Plugin 'arnaud-lb/vim-php-namespace'
         Plugin 'beyondwords/vim-twig'
-    " >>
-    " Python <<
+    " }}
+
+    " Python {{
         Plugin 'klen/python-mode'
         Plugin 'python.vim'
         Plugin 'python_match.vim'
         Plugin 'pythoncomplete'
-    " >>
-    " Javascript <<
+    " }}
+
+    " Javascript {{
         Plugin 'pangloss/vim-javascript'
         Plugin 'elzr/vim-json'
-    " >>
-    " Puppet <<
+    " }}
+
+    " Puppet {{
         Plugin 'Puppet-Syntax-Highlighting'
-    " >>
-    " Markdown <<
+    " }}
+
+    " Markdown {{
         Plugin 'tpope/vim-markdown'
-    " " >>
-    " Misc <<
+    " " }}
+
+    " Misc {{
         Plugin 'vim-scripts/TwitVim'
         Plugin 'vimwiki'
         Plugin 'mattn/webapi-vim'
         Plugin 'mattn/gist-vim'
-    " >>
+    " }}
+
     if exists('g:jacobwalker0814_first_run')
         " If this is the first run we need to install all of the plugins
         PluginInstall!
     endif
-" >>
-" Colors and UI <<
+" }}
+
+" Colors and UI {{
     syntax on " Enabled syntax highlighting
-    " Status line <<
+
+    " Status line {{
         set laststatus=2 " Always show status line
         set showcmd      " Show partial commands in status line and selected
                          " characters/lines in visual mode
         let g:airline_theme='solarized'
         let g:airline_powerline_fonts = 1
 
-    " >>
-    " Colorscheme <<
+    " }}
+
+    " Colorscheme {{
         " TODO do I need this?
         set t_Co=256                     " Works better with terminal vim
         set background=light             " I prefer the light version
@@ -237,10 +269,13 @@
         highlight clear SignColumn
         highlight clear LineNr
         highlight clear CursorLineNr
-    " >>
-" >>
-" IDE-Like Utility <<
-    " NERDTree <<
+    " }}
+
+" }}
+
+" IDE-Like Utility {{
+
+    " NERDTree {{
         let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
         let NERDTreeChDirMode=0
@@ -250,8 +285,9 @@
         let NERDTreeKeepTreeInNewTab=1
         let g:nerdtree_tabs_open_on_gui_startup=0
         let g:NERDShutUp=1
-    " >>
-    " Tabular <<
+    " }}
+
+    " Tabular {{
         nmap <Leader>a& :Tabularize /&<CR>
         vmap <Leader>a& :Tabularize /&<CR>
         nmap <Leader>a= :Tabularize /=<CR>
@@ -264,12 +300,14 @@
         vmap <Leader>a, :Tabularize /,<CR>
         nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    " >>
-    " Syntastic <<
+    " }}
+
+    " Syntastic {{
         let g:syntastic_php_checkers = ['php']
         let g:syntastic_php_phpcs_post_args = "--standard=psr2 -n"
-    " >>
-    " CTRL P <<
+    " }}
+
+    " CTRL P {{
         let g:ctrlp_working_path_mode = 'ra'
         nnoremap <silent> <D-t> :CtrlP<CR>
         nnoremap <silent> <D-r> :CtrlPMRU<CR>
@@ -283,65 +321,75 @@
             \ },
             \ 'fallback': 'find %s -type f'
         \ }
-    " >>
-    " Tagbar <<
+    " }}
+
+    " Tagbar {{
         nnoremap <silent> <leader>tt :TagbarToggle<CR>
         let g:tagbar_autofocus = 1
         let g:tagbar_autoclose = 1
-    " >>
-    " Ctags <<
+    " }}
+
+    " Ctags {{
         set tags=./tags;/,~/.vimtags
         " Make tags placed in .git/tags file available in all levels of a repository
         let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
         if gitroot != ''
             let &tags = &tags . ',' . gitroot . '/.git/tags'
         endif
-    " >>
-" >>
-" Version Control <<
-    " Fugitive <<
-        nnoremap <silent> <leader>gs :Gstatus<CR>
-        nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gc :Gcommit<CR>
-        nnoremap <silent> <leader>gb :Gblame<CR>
-        nnoremap <silent> <leader>gl :Glog<CR>
-        nnoremap <silent> <leader>gp :Git push<CR>
-        nnoremap <silent> <leader>gr :Gread<CR>:GitGutter<CR>
-        nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
-        nnoremap <silent> <leader>ge :Gedit<CR>
-        nnoremap <silent> <leader>gg :GitGutterToggle<CR>
-    " >>
-" >>
-" Navigation <<
+    " }}
+
+" }}
+
+" Version Control {{
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gl :Glog<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
+    nnoremap <silent> <leader>gr :Gread<CR>:GitGutter<CR>
+    nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
+    nnoremap <silent> <leader>ge :Gedit<CR>
+    nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+" }}
+
+" Navigation {{
     let b:match_ignorecase = 1
-" >>
-" PHP <<
+" }}
+
+" PHP {{
     let g:DisableAutoPHPFolding = 0
     let g:PIVAutoClose = 0
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-" >>
-" Python <<
+" }}
+
+" Python {{
     let g:pymode_lint_checker = "pyflakes"
     let g:pymode_utils_whitespaces = 0
     let g:pymode_options = 0
-" >>
-" Javascript <<
+" }}
+
+" Javascript {{
     nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-" >>
-" Misc Fun Things <<
-    " Twitvim <<
+" }}
+
+" Misc Fun Things {{
+    " Twitvim {{
         let g:twitvim_count = 50  " Show me 50 tweets at a time
-    " >>
-    " Vimwiki <<
+    " }}
+
+    " Vimwiki {{
         let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vimwiki_html/', 'auto_export': '1'}]
-    " >>
-    " Gist <<
+    " }}
+
+    " Gist {{
         let g:gist_detect_filetype = 1
         let g:gist_open_browser_after_post = 1
         let g:gist_post_private = 1
-    " >>
-" >>
-" Mappings and Macros <<
+    " }}
+" }}
+
+" Mappings and Macros {{
     " Easier moving in tabs and windows
     map <C-J> <C-W>j<C-W>_
     map <C-K> <C-W>k<C-W>_
@@ -403,10 +451,11 @@
 
     " Macro for PHPUnit to change a getMock to a getMockBuilder with the constructor disabled
     let @c='0/getMock:nohf(iBuilderf;i->disableOriginalConstructor()->getMock()'
-" >>
-" Overrides <<
+" }}
+
+" Overrides {{
     " Hook to make local changes
     if filereadable(expand("~/.vimrc.local"))
         source ~/.vimrc.local
     endif
-" >>
+" }}
