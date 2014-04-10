@@ -8,6 +8,9 @@ alias 'open'='xdg-open'
 alias 'ack'='ack --color-match="bright_black on_bright_white" --ignore-dirs=Fixtures'
 alias 'stripWhiteSpace'='egrep -rlI " +$" * | xargs -I {} sed -i "s/ \+$//" {}'
 
+# Use vimx if it's available
+hash vimx && alias 'vim'='vimx'
+
 changeChromeKey() {
     key="$1"; Key="$2";
     sed -i "s/\"$key\"/\"$Key\"/" _locales/en/messages.json;
@@ -33,15 +36,6 @@ function checkForBadFunctions() {
     done
 }
 
-function whatVersionsAreWeOn() {
-    echo "Edition Stable Release Develop" | awk '{ printf("%-7s %-10s %-10s %-10s\n", $1, $2, $3, $4); }'
-    awk 'BEGIN { while (a++<38) s=s "-"; print s }'
-
-    for i in `seq 8 11`; do
-        git tag | grep rel-1-$i- | awk -F- '{ printf("1.%-5s %-10s %-10s %-10s\n", '$i', "1.'$i'."$4, "1.'$i'."$4+1, "1.'$i'."$4+2); }' | sort -k2 -V | tail -1
-    done
-}
-
 function whatIsLeftToTest() {
     for file in $(find include/classes/Entities/ -name "*php"); do
         file=${file/include\/classes\//};
@@ -55,7 +49,6 @@ function whatIsLeftToTest() {
 
 alias 'tmux'='tmux -2'
 
-
-function retag2-0-0() {
-    git tag -d rel-2-0-0 && git push origin :refs/tags/rel-2-0-0 && git tag -a rel-2-0-0 -m "Tagging 2.0.0 for testing" && git push --tags
+function printTestNameLengths() {
+    (ack "public function test" | sed "s/.*public function //" | sed "s/(.*//" | while read fn; do count=`echo -n $fn | wc -c`; echo $count" "$fn; done) | sort -n
 }
