@@ -274,6 +274,7 @@
 " }}
 
 " IDE-Like Utility {{
+    let g:ackprg="ack -H --nocolor --nogroup --column"
 
     " NERDTree {{
         let NERDTreeShowBookmarks=1

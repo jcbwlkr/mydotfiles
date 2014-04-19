@@ -13,7 +13,7 @@
 		"branch": {
 			"before": " ",
 			"args": {
-				"status_colors": true
+				"status_colors": false
 			}
 		}
 	},
