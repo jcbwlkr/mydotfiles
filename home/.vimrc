@@ -105,6 +105,7 @@
         let custom_width_filetypes = {
             \ 'xml' : 2,
             \ 'html.twig' : 2,
+            \ 'blade' : 2,
             \ 'ruby' : 2,
             \ 'erb' : 2 }
         for [ft, width] in items(custom_width_filetypes)
@@ -211,6 +212,7 @@
         Plugin 'spf13/PIV'
         Plugin 'arnaud-lb/vim-php-namespace'
         Plugin 'beyondwords/vim-twig'
+        Plugin 'xsbeats/vim-blade'
     " }}
 
     " Python {{
@@ -253,18 +255,16 @@
         set laststatus=2 " Always show status line
         set showcmd      " Show partial commands in status line and selected
                          " characters/lines in visual mode
-        let g:airline_theme='solarized'
+        let g:airline_theme='base16'
         let g:airline_powerline_fonts = 1
 
     " }}
 
     " Colorscheme {{
         " TODO do I need this?
+        set background=light             " I prefer solarized light
         set t_Co=256                     " Works better with terminal vim
-        set background=light             " I prefer the light version
         let g:solarized_termcolors=256   " Work better with gnome-terminal
-        "let g:solarized_contrast="high"
-        "let g:solarized_visibility="high"
         colorscheme solarized
         highlight clear SignColumn
         highlight clear LineNr
@@ -339,6 +339,7 @@
         endif
     " }}
 
+    let g:ackprg="ack -H --nocolor --nogroup --column"
 " }}
 
 " Version Control {{
@@ -362,6 +363,7 @@
     let g:DisableAutoPHPFolding = 0
     let g:PIVAutoClose = 0
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+    autocmd BufNewFile,BufRead *.blade.php set filetype=blade
 " }}
 
 " Python {{
@@ -392,10 +394,10 @@
 
 " Mappings and Macros {{
     " Easier moving in tabs and windows
-    map <C-J> <C-W>j<C-W>_
-    map <C-K> <C-W>k<C-W>_
-    map <C-L> <C-W>l<C-W>_
-    map <C-H> <C-W>h<C-W>_
+    map <C-J> <C-W>j
+    map <C-K> <C-W>k
+    map <C-L> <C-W>l
+    map <C-H> <C-W>h
 
     " Wrapped lines goes down/up to next row, rather than next line in file.
     noremap j gj
