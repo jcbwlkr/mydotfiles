@@ -5,5 +5,7 @@
     ui = auto
 [push]
     default = matching
+[merge]
+    log = true
 [github]
     user = jacobwalker0814
