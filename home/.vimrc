@@ -407,6 +407,7 @@
     nnoremap Y y$
 
     " Code folding options
+    nmap <Leader>ff :EnableFastPHPFolds<CR>
     nmap <leader>f0 :set foldlevel=0<CR>
     nmap <leader>f1 :set foldlevel=1<CR>
     nmap <leader>f2 :set foldlevel=2<CR>
