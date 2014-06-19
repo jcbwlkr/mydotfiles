@@ -3,24 +3,26 @@
 # Install dependencies
 function installPackage() {
     local package=$1
+    local yum_package="${package}"
+    local apt_package="${package}"
+    if [[ $package == *"|"* ]]; then
+        yum_package=$(echo $package | cut -d"|" -f1)
+        apt_package=$(echo $package | cut -d"|" -f2)
+    fi
+    # If the package name includes a | then the name before the | is for yum
+    # and the name after is for apt-get
     echo "** Installing package ${package} **"
+    return 0
     if [ "x"$(which apt-get 2>/dev/null) != "x" ]; then
-        sudo apt-get --assume-yes install $package
+        sudo apt-get --assume-yes install $apt_package
     elif [ "x"$(which yum 2>/dev/null) != "x" ]; then
-        sudo yum --assumeyes install $package
+        sudo yum --assumeyes install $yum_package
     fi
 }
-dependencies=( git vim tmux python-pip rubygems ctags gnome-python2-gconf )
+dependencies=( git "gvim|vim-gnome" tmux rubygems ctags )
 for i in "${dependencies[@]}"; do
     installPackage $i
 done;
-
-# Powerline
-if [ $(which pip) != "" ]; then
-    pip install --user git+git://github.com/Lokaltog/powerline
-elif [ $(which python-pip) != "" ]; then
-    python-pip install --user git+git://github.com/Lokaltog/powerline
-fi
 
 sudo gem install tmuxinator
 sudo gem install homesick
@@ -29,11 +31,3 @@ sudo gem install homesick
 homesick clone git@github.com:jacobwalker0814/mydotfiles.git
 homesick pull --force --all
 homesick symlink mydotfiles
-
-# Add solarized colors to my terminal if the profile isn't configured yet
-if [ ! -e ~/.gconf/apps/gnome-terminal/profiles/Solarized ]; then
-    git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.local/share/gnome-terminal-colors-solarized
-    cd ~/.local/share/gnome-terminal-colors-solarized
-    ./solarize
-    cd -
-fi

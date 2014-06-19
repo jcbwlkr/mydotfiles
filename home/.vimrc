@@ -256,7 +256,11 @@
         set showcmd      " Show partial commands in status line and selected
                          " characters/lines in visual mode
         let g:airline_theme='bubblegum'
-        let g:airline_powerline_fonts = 1
+        let g:airline_left_sep='ᐳ'
+        let g:airline_left_alt_sep='ᐳ'
+        let g:airline_right_sep='ᐸ'
+        let g:airline_right_alt_sep='ᐸ'
+        let g:airline_branch_prefix='⎇ '
 
     " }}
 
