@@ -174,7 +174,7 @@
     " Colors and UI {{
         Plugin 'bling/vim-airline'
         Plugin 'godlygeek/csapprox'
-        Plugin 'altercation/vim-colors-solarized'
+        Plugin 'flazz/vim-colorschemes'
     " }}
 
     " IDE-Like Utility {{
@@ -255,17 +255,14 @@
         set laststatus=2 " Always show status line
         set showcmd      " Show partial commands in status line and selected
                          " characters/lines in visual mode
-        let g:airline_theme='base16'
+        let g:airline_theme='bubblegum'
         let g:airline_powerline_fonts = 1
 
     " }}
 
     " Colorscheme {{
-        " TODO do I need this?
-        set background=light             " I prefer solarized light
-        set t_Co=256                     " Works better with terminal vim
-        let g:solarized_termcolors=256   " Work better with gnome-terminal
-        colorscheme solarized
+        set background=dark
+        colorscheme bubblegum
         highlight clear SignColumn
         highlight clear LineNr
         highlight clear CursorLineNr
