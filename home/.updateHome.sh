@@ -12,7 +12,6 @@ function installPackage() {
     # If the package name includes a | then the name before the | is for yum
     # and the name after is for apt-get
     echo "** Installing package ${package} **"
-    return 0
     if [ "x"$(which apt-get 2>/dev/null) != "x" ]; then
         sudo apt-get --assume-yes install $apt_package
     elif [ "x"$(which yum 2>/dev/null) != "x" ]; then
@@ -25,16 +24,15 @@ for i in "${dependencies[@]}"; do
 done;
 
 # Install oh-my-zsh
-curl -L http://install.ohmyz.sh | sh
+wget -q --no-check-certificate http://install.ohmyz.sh -O - | sh
 
 # Install ruby via rvm
 curl -sSL https://get.rvm.io | bash -s stable --ruby
-
-# Source the newly installed rvm
 source /home/jwalker/.rvm/scripts/rvm
+rvm reload
 
-sudo gem install tmuxinator
-sudo gem install homesick
+gem install tmuxinator
+gem install homesick
 
 # Get homesick castles
 homesick clone git@github.com:jacobwalker0814/mydotfiles.git
