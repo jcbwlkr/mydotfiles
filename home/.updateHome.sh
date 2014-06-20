@@ -24,11 +24,14 @@ for i in "${dependencies[@]}"; do
     installPackage $i
 done;
 
-# Install oh my zsh
+# Install oh-my-zsh
 curl -L http://install.ohmyz.sh | sh
 
 # Install ruby via rvm
 curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+# Source the newly installed rvm
+source /home/jwalker/.rvm/scripts/rvm
 
 sudo gem install tmuxinator
 sudo gem install homesick
