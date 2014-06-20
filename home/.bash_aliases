@@ -20,7 +20,7 @@ changeChromeKey() {
 
 copyTheThings(){
     for i in 16 22 32 48; do
-        file=/usr/share/icons/oxygen/${i}x${i}/$1;
+        file=/home/jwalker/Projects/oxygen-icons-png/oxygen/${i}x${i}/$1;
         basename=$(basename $file);
         basename=${basename//_/-}
         cp $file layout/oxygen/${i}/${basename}

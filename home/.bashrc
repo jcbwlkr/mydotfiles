@@ -1,7 +1,3 @@
-# Define my XDG dirs for things like powerline
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}:${HOME}/.my_config:/etc/xdg"
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -51,14 +47,11 @@ export EDITOR=/usr/bin/vim
 
 # powerline prompt
 export PATH="${PATH}:${HOME}/.local/bin"
-. $(find ${HOME}/.local/ -wholename "*powerline/bindings/bash/powerline.sh")
 
 # Hook to make local changes
 if [ -f ~/.bashrc_local ]; then
     . ~/.bashrc_local
 fi
-
-export PATH="/usr/local/heroku/bin:$PATH"
 
 if [ -f ~/.rvm/scripts/rvm ]; then
     . ~/.rvm/scripts/rvm
