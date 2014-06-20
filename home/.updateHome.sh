@@ -19,10 +19,16 @@ function installPackage() {
         sudo yum --assumeyes install $yum_package
     fi
 }
-dependencies=( git "gvim|vim-gnome" tmux rubygems ctags )
+dependencies=( git "gvim|vim-gnome" tmux ctags zsh )
 for i in "${dependencies[@]}"; do
     installPackage $i
 done;
+
+# Install oh my zsh
+curl -L http://install.ohmyz.sh | sh
+
+# Install ruby via rvm
+curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 sudo gem install tmuxinator
 sudo gem install homesick
