@@ -10,7 +10,7 @@ DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git composer)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -29,7 +29,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="${COLOR_RESET}${COLOR_CYAN})"
 ZSH_THEME_GIT_PROMPT_DIRTY="${COLOR_RESET}${COLOR_BRIGHT_RED} ✘${COLOR_RESET}"
 ZSH_THEME_GIT_PROMPT_CLEAN="${COLOR_RESET}${COLOR_BRIGHT_GREEN} ✔${COLOR_RESET}"
 
-PROMPT=$COLOR_GREEN'%4~$(git_prompt_info)'$COLOR_GREEN' ᐳ%{$reset_color%} '
+PROMPT=$COLOR_GREEN'%4~$(git_prompt_info)'$COLOR_BRIGHT_YELLOW'%(?.. %?)'$COLOR_RESET$COLOR_GREEN' ᐳ'$COLOR_RESET' '
 
 # Use vimx when available for better X integration
 if [ -e /usr/bin/vimx ]; then
