@@ -5,7 +5,6 @@ alias 'rmorig'='find -type f -name *.orig -exec rm -i {} \;'
 alias 'rmrej'='find -type f -name *.rej -exec rm -i {} \;'
 alias 'rmdotdirfiles'='find -type f -name ".directory" -exec rm -i {} \;'
 alias 'open'='xdg-open'
-alias 'ack'='ack --color-match="bright_black on_bright_white" --ignore-dirs=Fixtures'
 alias 'stripWhiteSpace'='egrep -rlI " +$" * | xargs -I {} sed -i "s/ \+$//" {}'
 
 # Use vimx if it's available
