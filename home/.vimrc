@@ -260,7 +260,7 @@
         let g:airline_left_alt_sep='ᐳ'
         let g:airline_right_sep='ᐸ'
         let g:airline_right_alt_sep='ᐸ'
-        let g:airline_branch_prefix='⎇ '
+        let g:airline_branch_prefix='⎇'
 
     " }}
 
