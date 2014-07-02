@@ -177,7 +177,7 @@
         Plugin 'flazz/vim-colorschemes'
     " }}
 
-    " IDE-Like Utility {{
+    " Utility {{
         Plugin 'scrooloose/nerdtree'
         Plugin 'jistr/vim-nerdtree-tabs'
         Plugin 'godlygeek/tabular'
@@ -189,8 +189,11 @@
         Plugin 'terryma/vim-multiple-cursors'
         Plugin 'tpope/vim-abolish.git'
         Plugin 'tpope/vim-surround'
+        Plugin 'tpope/vim-repeat'
+        Plugin 'tpope/vim-speeddating'
         Plugin 'vim-scripts/restore_view.vim'
         Plugin 'vim-scripts/sessionman.vim'
+        Plugin 'PeterRincker/vim-argumentative'
     " }}
 
     " Version Control {{
@@ -274,7 +277,7 @@
 
 " }}
 
-" IDE-Like Utility {{
+" Utility {{
     let g:ackprg="ack -H --nocolor --nogroup --column"
 
     " NERDTree {{
