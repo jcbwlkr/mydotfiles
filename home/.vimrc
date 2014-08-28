@@ -243,6 +243,7 @@
         Plugin 'vimwiki'
         Plugin 'mattn/webapi-vim'
         Plugin 'mattn/gist-vim'
+        Plugin 'beloglazov/vim-online-thesaurus'
     " }}
 
     if exists('g:jacobwalker0814_first_run')
@@ -394,6 +395,11 @@
         let g:gist_detect_filetype = 1
         let g:gist_open_browser_after_post = 1
         let g:gist_post_private = 1
+    " }}
+
+    " Online Thesaurus {{
+        let g:online_thesaurus_map_keys = 0
+        nmap <leader>s :OnlineThesaurusCurrentWord<CR>
     " }}
 " }}
 
