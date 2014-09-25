@@ -29,7 +29,15 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="${COLOR_RESET}${COLOR_CYAN})"
 ZSH_THEME_GIT_PROMPT_DIRTY="${COLOR_RESET}${COLOR_BRIGHT_RED} ✘${COLOR_RESET}"
 ZSH_THEME_GIT_PROMPT_CLEAN="${COLOR_RESET}${COLOR_BRIGHT_GREEN} ✔${COLOR_RESET}"
 
-PROMPT=$COLOR_GREEN'%4~$(git_prompt_info)'$COLOR_BRIGHT_YELLOW'%(?.. %?)'$COLOR_RESET$COLOR_GREEN' ᐳ'$COLOR_RESET' '
+# Prevent virtualenv from mucking with my prompt
+VIRTUAL_ENV_DISABLE_PROMPT=1
+function virtualenv_prompt_info() {
+    [[ "" == $VIRTUAL_ENV ]] && return
+
+    print " ${COLOR_RESET}${COLOR_MAGENTA}鱧$(basename $VIRTUAL_ENV)${COLOR_RESET}"
+}
+
+PROMPT=$COLOR_GREEN'%4~$(virtualenv_prompt_info)$(git_prompt_info)'$COLOR_BRIGHT_YELLOW'%(?.. %?)'$COLOR_RESET$COLOR_GREEN' ᐳ'$COLOR_RESET' '
 
 # Use vimx when available for better X integration
 if [ -e /usr/bin/vimx ]; then
