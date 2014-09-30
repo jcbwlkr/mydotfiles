@@ -194,6 +194,7 @@
         Plugin 'vim-scripts/restore_view.vim'
         Plugin 'vim-scripts/sessionman.vim'
         Plugin 'PeterRincker/vim-argumentative'
+        Plugin 'vim-php/tagbar-phpctags.vim'
     " }}
 
     " Version Control {{
