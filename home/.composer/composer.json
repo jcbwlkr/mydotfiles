@@ -1,0 +1,6 @@
+{
+    "require": {
+        "d11wtq/boris": "*",
+        "techlivezheng/phpctags": "*"
+    }
+}

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ex
 
 # Install dependencies
 function installPackage() {
@@ -28,7 +28,7 @@ wget -q --no-check-certificate http://install.ohmyz.sh -O - | sh
 
 # Install ruby via rvm
 curl -sSL https://get.rvm.io | bash -s stable --ruby
-source /home/jwalker/.rvm/scripts/rvm
+source $HOME/.rvm/scripts/rvm
 rvm reload
 
 gem install tmuxinator
@@ -38,3 +38,12 @@ gem install homesick
 homesick clone git@github.com:jacobwalker0814/mydotfiles.git
 homesick pull --force --all
 homesick symlink mydotfiles
+
+# Install composer and global requirements
+mkdir $HOME/bin
+curl -s https://getcomposer.org/installer | php -- --install-dir=$HOME/bin --filename=composer
+$HOME/bin/composer global install
+
+cd $HOME/.composer/vendor/techlivezheng/phpctags
+make
+mv build/phpctags.phar $HOME/.composer/vendor/bin/phpctags
