@@ -130,8 +130,8 @@
     set timeout ttimeoutlen=50 " TODO What is this for exactly and is this the setting I want?
     set mouse=                 " I don't want mouse support
     set clipboard=unnamedplus  " Yank to and Put from the system highlight clipboard
-    set pastetoggle=<F12>           " F12 to enable pastetoggle (sane indentation on pastes)
-    set spell                  " Spell checking on
+    set pastetoggle=<F12>      " F12 to enable pastetoggle (sane indentation on pastes)
+    set nospell                " Spell checking off
 
     " Disable bells
     set noerrorbells visualbell t_vb=
@@ -165,11 +165,6 @@
 " }}
 
 " Plugins {{
-    " TODO Do I need? {{
-        "Plugin 'MarcWeber/vim-addon-mw-utils'
-        "Plugin 'tomtom/tlib_vim'
-        " TODO snippets?
-    " }}
 
     " Colors and UI {{
         Plugin 'bling/vim-airline'
@@ -178,6 +173,7 @@
     " }}
 
     " Utility {{
+        " TODO snippets?
         Plugin 'scrooloose/nerdtree'
         Plugin 'jistr/vim-nerdtree-tabs'
         Plugin 'godlygeek/tabular'
@@ -255,6 +251,8 @@
 
 " Colors and UI {{
     syntax on " Enabled syntax highlighting
+
+    set colorcolumn=120 " Provide visual indicator on column 120 for long lines
 
     " Status line {{
         set laststatus=2 " Always show status line
@@ -344,8 +342,6 @@
             let &tags = &tags . ',' . gitroot . '/.git/tags'
         endif
     " }}
-
-    let g:ackprg="ack -H --nocolor --nogroup --column"
 " }}
 
 " Version Control {{
