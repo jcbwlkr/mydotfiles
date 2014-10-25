@@ -1,6 +1,6 @@
 [user]
     name = Jacob Walker
-    email = jwalker@timeips.com
+    email = jacob@tortugas-llc.com
 [color]
     ui = auto
 [push]
@@ -9,3 +9,5 @@
     log = true
 [github]
     user = jacobwalker0814
+[include]
+    path = ~/.config/git/overrides
