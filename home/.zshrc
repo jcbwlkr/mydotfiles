@@ -50,12 +50,16 @@ fi
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}:${HOME}/.my_config:/etc/xdg"
 
-export PATH=$PATH:/usr/lib/qt-3.3/bin:/usr/NX/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin
-export PATH="${PATH}:${HOME}/bin:${HOME}/.local/bin"
+export PATH=$PATH:/usr/lib/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin
+export PATH=${PATH}:${HOME}/bin:${HOME}/.local/bin
 
 # RVM TODO maybe use a omz plugin?
 [ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# Go Lang
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 

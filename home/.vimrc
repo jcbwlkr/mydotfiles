@@ -215,6 +215,10 @@
         Plugin 'xsbeats/vim-blade'
     " }}
 
+    " Go {{
+        Plugin 'fatih/vim-go'
+    " }}
+
     " Python {{
         Plugin 'klen/python-mode'
         Plugin 'python.vim'
