@@ -20,6 +20,7 @@
     set nocompatible
 
     set shortmess+=filmnrxoOtT " Abbreviation of messages (avoids 'hit enter')
+    filetype off               " Required to run before vundle starts
 
     " Vundle {{
         fun! SetupVundle()
@@ -38,14 +39,106 @@
             endif
 
             " Activate vundle
-            call vundle#rc()
+            call vundle#begin()
             Plugin 'gmarik/vundle'
         endfun
         call SetupVundle()
     " }}
+" }}
+
+" Plugins {{
+
+    " Colors and UI {{
+        Plugin 'bling/vim-airline'
+        Plugin 'godlygeek/csapprox'
+        Plugin 'flazz/vim-colorschemes'
+    " }}
+
+    " Utility {{
+        " TODO snippets?
+        Plugin 'scrooloose/nerdtree'
+        Plugin 'jistr/vim-nerdtree-tabs'
+        Plugin 'godlygeek/tabular'
+        Plugin 'scrooloose/syntastic'
+        Plugin 'kien/ctrlp.vim'
+        Plugin 'majutsushi/tagbar'
+        Plugin 'scrooloose/nerdcommenter'
+        Plugin 'mileszs/ack.vim'
+        Plugin 'terryma/vim-multiple-cursors'
+        Plugin 'tpope/vim-abolish.git'
+        Plugin 'tpope/vim-surround'
+        Plugin 'tpope/vim-repeat'
+        Plugin 'tpope/vim-speeddating'
+        Plugin 'vim-scripts/restore_view.vim'
+        Plugin 'vim-scripts/sessionman.vim'
+        Plugin 'PeterRincker/vim-argumentative'
+        Plugin 'vim-php/tagbar-phpctags.vim'
+    " }}
+
+    " Version Control {{
+        Plugin 'mhinz/vim-signify'
+        Plugin 'tpope/vim-fugitive'
+    " }}
+
+    " Navigation {{
+        Plugin 'skwp/vim-easymotion'
+        Plugin 'matchit.zip'
+    " }}
+
+    " HTML / CSS {{
+        Plugin 'groenewege/vim-less'
+        Plugin 'hail2u/vim-css3-syntax'
+    " }}
+
+    " PHP {{
+        Plugin 'spf13/PIV'
+        Plugin 'arnaud-lb/vim-php-namespace'
+        Plugin 'beyondwords/vim-twig'
+        Plugin 'xsbeats/vim-blade'
+    " }}
+
+    " Go {{
+        Plugin 'fatih/vim-go'
+    " }}
+
+    " Python {{
+        Plugin 'klen/python-mode'
+        Plugin 'python.vim'
+        Plugin 'python_match.vim'
+        Plugin 'pythoncomplete'
+    " }}
+
+    " Javascript {{
+        Plugin 'pangloss/vim-javascript'
+        Plugin 'elzr/vim-json'
+    " }}
+
+    " Puppet {{
+        Plugin 'Puppet-Syntax-Highlighting'
+    " }}
+
+    " Markdown {{
+        Plugin 'tpope/vim-markdown'
+    " " }}
+
+    " Misc {{
+        Plugin 'vim-scripts/TwitVim'
+        Plugin 'vimwiki'
+        Plugin 'mattn/webapi-vim'
+        Plugin 'mattn/gist-vim'
+        Plugin 'beloglazov/vim-online-thesaurus'
+    " }}
+
+    call vundle#end() " Done adding plugins
 
     filetype plugin indent on   " Automatically detect file types.
+
+    if exists('g:jacobwalker0814_first_run')
+        " If this is the first run we need to install all of the plugins
+        PluginInstall!
+    endif
 " }}
+
 
 " General Settings {{
     scriptencoding utf-8
@@ -162,95 +255,6 @@
     set splitbelow                  " Puts new split windows to the bottom of the current
     set showmatch                   " Show matching brackets/parenthesis
     set matchpairs+=<:>             " Match < and > with %
-" }}
-
-" Plugins {{
-
-    " Colors and UI {{
-        Plugin 'bling/vim-airline'
-        Plugin 'godlygeek/csapprox'
-        Plugin 'flazz/vim-colorschemes'
-    " }}
-
-    " Utility {{
-        " TODO snippets?
-        Plugin 'scrooloose/nerdtree'
-        Plugin 'jistr/vim-nerdtree-tabs'
-        Plugin 'godlygeek/tabular'
-        Plugin 'scrooloose/syntastic'
-        Plugin 'kien/ctrlp.vim'
-        Plugin 'majutsushi/tagbar'
-        Plugin 'scrooloose/nerdcommenter'
-        Plugin 'mileszs/ack.vim'
-        Plugin 'terryma/vim-multiple-cursors'
-        Plugin 'tpope/vim-abolish.git'
-        Plugin 'tpope/vim-surround'
-        Plugin 'tpope/vim-repeat'
-        Plugin 'tpope/vim-speeddating'
-        Plugin 'vim-scripts/restore_view.vim'
-        Plugin 'vim-scripts/sessionman.vim'
-        Plugin 'PeterRincker/vim-argumentative'
-        Plugin 'vim-php/tagbar-phpctags.vim'
-    " }}
-
-    " Version Control {{
-        Plugin 'mhinz/vim-signify'
-        Plugin 'tpope/vim-fugitive'
-    " }}
-
-    " Navigation {{
-        Plugin 'skwp/vim-easymotion'
-        Plugin 'matchit.zip'
-    " }}
-
-    " HTML / CSS {{
-        Plugin 'groenewege/vim-less'
-        Plugin 'hail2u/vim-css3-syntax'
-    " }}
-
-    " PHP {{
-        Plugin 'spf13/PIV'
-        Plugin 'arnaud-lb/vim-php-namespace'
-        Plugin 'beyondwords/vim-twig'
-        Plugin 'xsbeats/vim-blade'
-    " }}
-
-    " Go {{
-        Plugin 'fatih/vim-go'
-    " }}
-
-    " Python {{
-        Plugin 'klen/python-mode'
-        Plugin 'python.vim'
-        Plugin 'python_match.vim'
-        Plugin 'pythoncomplete'
-    " }}
-
-    " Javascript {{
-        Plugin 'pangloss/vim-javascript'
-        Plugin 'elzr/vim-json'
-    " }}
-
-    " Puppet {{
-        Plugin 'Puppet-Syntax-Highlighting'
-    " }}
-
-    " Markdown {{
-        Plugin 'tpope/vim-markdown'
-    " " }}
-
-    " Misc {{
-        Plugin 'vim-scripts/TwitVim'
-        Plugin 'vimwiki'
-        Plugin 'mattn/webapi-vim'
-        Plugin 'mattn/gist-vim'
-        Plugin 'beloglazov/vim-online-thesaurus'
-    " }}
-
-    if exists('g:jacobwalker0814_first_run')
-        " If this is the first run we need to install all of the plugins
-        PluginInstall!
-    endif
 " }}
 
 " Colors and UI {{
