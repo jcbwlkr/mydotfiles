@@ -72,7 +72,6 @@
         Plugin 'vim-scripts/restore_view.vim'
         Plugin 'vim-scripts/sessionman.vim'
         Plugin 'PeterRincker/vim-argumentative'
-        Plugin 'vim-php/tagbar-phpctags.vim'
     " }}
 
     " Version Control {{
@@ -95,6 +94,8 @@
         Plugin 'arnaud-lb/vim-php-namespace'
         Plugin 'beyondwords/vim-twig'
         Plugin 'xsbeats/vim-blade'
+        Plugin 'vim-php/tagbar-phpctags.vim'
+        Plugin 'vim-php/vim-php-refactoring'
     " }}
 
     " Go {{
@@ -374,6 +375,8 @@
     let g:PIVAutoClose = 0
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
     autocmd BufNewFile,BufRead *.blade.php set filetype=blade
+
+    let g:php_refactor_command='refactor'
 " }}
 
 " Python {{

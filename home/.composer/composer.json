@@ -1,6 +1,7 @@
 {
     "require": {
         "d11wtq/boris": "*",
-        "techlivezheng/phpctags": "*"
+        "techlivezheng/phpctags": "*",
+        "qafoolabs/php-refactoring-browser": "~0.0"
     }
 }
