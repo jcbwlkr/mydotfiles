@@ -372,6 +372,10 @@
     let b:match_ignorecase = 1
 " }}
 
+" HTML / CSS {{
+    autocmd BufNewFile,BufRead *.less set filetype=less
+" }}
+
 " PHP {{
     let g:DisableAutoPHPFolding = 0
     let g:PIVAutoClose = 0
