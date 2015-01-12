@@ -59,6 +59,7 @@
         Plugin 'scrooloose/nerdtree'
         Plugin 'jistr/vim-nerdtree-tabs'
         Plugin 'godlygeek/tabular'
+        Plugin 'jlemetay/permut'
         Plugin 'scrooloose/syntastic'
         Plugin 'ctlpvim/ctrlp.vim'
         Plugin 'majutsushi/tagbar'
