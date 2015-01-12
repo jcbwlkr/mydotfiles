@@ -1,12 +1,12 @@
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=0 foldmethod=marker spell:
 "
-" Personal .vimrc of Jacob Walker (@jacobwalker0814)
+" Personal .vimrc of Jacob Walker (@jcbwlkr)
 "
-"    _             _                _ _            __  ___ _ _ _
-"   (_)__ _ __ ___| |____ __ ____ _| | |_____ _ _ /  \( _ ) | | |
-"   | / _` / _/ _ \ '_ \ V  V / _` | | / / -_) '_| () / _ \ |_  _|
-"  _/ \__,_\__\___/_.__/\_/\_/\__,_|_|_\_\___|_|  \__/\___/_| |_|
-" |__/
+"   _    _           _ _
+"  (_)__| |____ __ _| | |___ _
+"  | / _| '_ \ V  V / | / / '_|
+" _/ \__|_.__/\_/\_/|_|_\_\_|
+"|__/
 "
 " This file is intended to be a (mostly) stand alone configuration for
 " everything I use in Vim. The first time you open vim with this config it
@@ -35,7 +35,7 @@
                 echo "* Installing Vundle and plugins *"
                 echo "*********************************"
                 execute '!git clone --depth=1 https://github.com/gmarik/vundle ' shellescape(plugin_root_dir . '/vundle', 1)
-                let g:jacobwalker0814_first_run = 1
+                let g:jcbwlkr_first_run = 1
             endif
 
             " Activate vundle
@@ -133,7 +133,7 @@
 
     filetype plugin indent on   " Automatically detect file types.
 
-    if exists('g:jacobwalker0814_first_run')
+    if exists('g:jcbwlkr_first_run')
         " If this is the first run we need to install all of the plugins
         PluginInstall!
     endif

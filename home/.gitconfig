@@ -8,6 +8,6 @@
 [merge]
     log = true
 [github]
-    user = jacobwalker0814
+    user = jcbwlkr
 [include]
     path = ~/.config/git/overrides

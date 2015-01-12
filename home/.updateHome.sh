@@ -35,7 +35,7 @@ gem install tmuxinator
 gem install homesick
 
 # Get homesick castles
-homesick clone git@github.com:jacobwalker0814/mydotfiles.git
+homesick clone git@github.com:jcbwlkr/mydotfiles.git
 homesick pull --force --all
 homesick symlink mydotfiles
 
