@@ -1,14 +1,14 @@
 alias 'ls'='ls --classify --color=auto --group-directories-first -H'
 alias 'll'='ls -l'
-alias 'grep'='grep -P --color=auto --exclude=tags --exclude-dir=Fixtures'
+alias 'grep'='grep -P --color=auto'
 alias 'rmorig'='find -type f -name *.orig -exec rm -i {} \;'
 alias 'rmrej'='find -type f -name *.rej -exec rm -i {} \;'
-alias 'rmdotdirfiles'='find -type f -name ".directory" -exec rm -i {} \;'
-alias 'open'='xdg-open'
 alias 'stripWhiteSpace'='egrep -rlI " +$" * | xargs -I {} sed -i "s/ \+$//" {}'
 
 # Use vimx if it's available
 hash vimx && alias 'vim'='vimx'
+
+alias 'tmux'='tmux -2'
 
 changeChromeKey() {
     key="$1"; Key="$2";
@@ -45,8 +45,6 @@ function whatIsLeftToTest() {
 
 # Put a new line before a @return in PHP Doc
 #find -name "*php" -exec perl -0777 -pi -e "s/( *)(\* \@param.*\n)( *\* \@return)/\1\2\1*\n\3/gm" {} \;
-
-alias 'tmux'='tmux -2'
 
 function printTestNameLengths() {
     (ack "public function test" | sed "s/.*public function //" | sed "s/(.*//" | while read fn; do count=`echo -n $fn | wc -c`; echo $count" "$fn; done) | sort -n
