@@ -314,6 +314,8 @@
         vmap <Leader>a:: :Tabularize /:\zs<CR>
         nmap <Leader>a, :Tabularize /,<CR>
         vmap <Leader>a, :Tabularize /,<CR>
+        nmap <Leader>a,, :Tabularize /,\zs<CR>
+        vmap <Leader>a,, :Tabularize /,\zs<CR>
         nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     " }}
@@ -460,6 +462,11 @@
 
     " Mapping to fix syntax for the whole file
     nmap <leader>fs :syn sync fromstart<CR>
+
+    " Just close this buffer, dang it
+    nmap <leader>bd :bd!<cr>
+
+    " TODO something to toggle spell
 
     " Easier horizontal scrolling
     map zl zL
