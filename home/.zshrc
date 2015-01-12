@@ -61,6 +61,11 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+# Enable M-m to cycle through arguments of previous commands
+autoload -Uz copy-earlier-word
+zle -N copy-earlier-word
+bindkey "^[m" copy-earlier-word
+
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 # Hook to make local changes
