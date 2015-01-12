@@ -387,6 +387,20 @@
     let g:php_refactor_command='refactor'
 " }}
 
+" Go {{
+    au FileType go nmap <leader>r <Plug>(go-run)
+    au FileType go nmap <leader>e <Plug>(go-rename)
+    au FileType go nmap <leader>s <Plug>(go-implements)
+    au FileType go nmap <leader>t <Plug>(go-test)
+    au FileType go nmap <leader>c <Plug>(go-coverage)
+    au FileType go nmap <leader>v <Plug>(go-vet)
+    au FileType go nmap <leader>gd <Plug>(go-doc)
+
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+" }}
+
 " Python {{
     let g:pymode_lint_checker = "pyflakes"
     let g:pymode_utils_whitespaces = 0
