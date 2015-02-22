@@ -385,6 +385,8 @@
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
     autocmd BufNewFile,BufRead *.blade.php set filetype=blade
 
+    let g:php_html_in_strings = 0
+
     let g:php_refactor_command='refactor'
 " }}
 
