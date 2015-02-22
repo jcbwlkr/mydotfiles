@@ -1,0 +1,7 @@
+" Sync out changes in TimeIPS-server whenever you save
+function! RunGits()
+    silent execute "!([ -e composer.json ] && grep -q 'name.*timeips/server' composer.json && (echo ' ↻ ᐳ' > ~/.vim/sync-status) && make build && gits && (echo ' ✔ ᐳ' > ~/.vim/sync-status) || (echo ' ✘ ᐳ' > ~/.vim/sync-status)) > /dev/null 2>&1 &"
+    execute "redraw!"
+    endfunction
+
+autocmd BufWritePost * call RunGits()
