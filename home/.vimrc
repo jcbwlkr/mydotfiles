@@ -142,7 +142,6 @@
     endif
 " }}
 
-
 " General Settings {{
     scriptencoding utf-8
 
@@ -258,6 +257,8 @@
     set splitbelow                  " Puts new split windows to the bottom of the current
     set showmatch                   " Show matching brackets/parenthesis
     set matchpairs+=<:>             " Match < and > with %
+
+    set formatoptions+=j            " Remove comment leaders when joining lines in comments
 " }}
 
 " Colors and UI {{
