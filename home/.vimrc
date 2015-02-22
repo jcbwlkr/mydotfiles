@@ -74,6 +74,7 @@
         Plugin 'vim-scripts/sessionman.vim'
         Plugin 'PeterRincker/vim-argumentative'
         Plugin 'chrisbra/NrrwRgn'
+        "Plugin 'joonty/vdebug.git'
     " }}
 
     " Version Control {{
@@ -291,6 +292,18 @@
 
 " Utility {{
     let g:ackprg="ack -H --nocolor --nogroup --column"
+
+    " Vdebug {{
+    "    " TODO move this option to .vimrc.local?
+    "    let g:vdebug_options = {
+    "    \   "ide_key": "vim",
+    "    \   "break_on_open" : 1,
+    "    \   "watch_window_style" : "compact",
+    "    \   "path_maps": {
+    "    \       "/var/www/html": "/home/jwalker/Projects/TimeIPS-server",
+    "    \   }
+    "    \}
+    " }}
 
     " NERDTree {{
         let NERDTreeShowBookmarks=1
