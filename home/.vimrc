@@ -505,6 +505,9 @@
     " Macro for PHPUnit to change a getMock to a getMockBuilder with the constructor disabled
     let @c='0/getMock:nohf(iBuilderf;i->disableOriginalConstructor()->getMock()'
 
+    " Macro for making a getter & setter from a property
+    "^mayyGOpdwxyypkipublic function getl~A€kb(){}jyykPi	return $this->jojyyppp3kipublic function setl~A€kb($JxA€kb){j^i	$this->A€kb = $Jxoreturn $this;}'aj
+
     " Show syntax highlighting groups for word under cursor
     " From http://stackoverflow.com/a/7893500/859353
     nmap <F2> :call <SID>SynStack()<CR>
