@@ -61,7 +61,7 @@
         Plugin 'godlygeek/tabular'
         Plugin 'jlemetay/permut'
         Plugin 'scrooloose/syntastic'
-        Plugin 'ctlpvim/ctrlp.vim'
+        Plugin 'ctrlpvim/ctrlp.vim'
         Plugin 'majutsushi/tagbar'
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'mileszs/ack.vim'
