@@ -225,9 +225,16 @@
 
     set timeout ttimeoutlen=50 " TODO What is this for exactly and is this the setting I want?
     set mouse=                 " I don't want mouse support
-    set clipboard=unnamedplus  " Yank to and Put from the system highlight clipboard
     set pastetoggle=<F12>      " F12 to enable pastetoggle (sane indentation on pastes)
     set nospell                " Spell checking off
+
+    if has('clipboard')
+        if has('unnamedplus')  " When possible use + register for copy-paste
+            set clipboard=unnamed,unnamedplus
+        else                   " On Mac and Windows, use * register for copy-paste
+            set clipboard=unnamed
+        endif
+    endif
 
     " Disable bells
     set noerrorbells visualbell t_vb=
