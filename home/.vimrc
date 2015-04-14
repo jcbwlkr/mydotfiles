@@ -278,12 +278,16 @@
         set laststatus=2 " Always show status line
         set showcmd      " Show partial commands in status line and selected
                          " characters/lines in visual mode
+
+        if !exists('g:airline_symbols')
+          let g:airline_symbols = {}
+        endif
         let g:airline_theme='bubblegum'
         let g:airline_left_sep='ᐳ'
         let g:airline_left_alt_sep='ᐳ'
         let g:airline_right_sep='ᐸ'
         let g:airline_right_alt_sep='ᐸ'
-        let g:airline_branch_prefix='⎇'
+        let g:airline_symbols.branch='⎇'
 
     " }}
 
