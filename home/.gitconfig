@@ -11,3 +11,5 @@
     user = jcbwlkr
 [include]
     path = ~/.config/git/overrides
+[core]
+	pager = less -x4
