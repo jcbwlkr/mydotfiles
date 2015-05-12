@@ -11,3 +11,4 @@ esac
 
 alias 'll'='ls -l'
 alias 'tmux'='tmux -2'
+alias ackgo='ack --ignore-dir=Godeps --go'
