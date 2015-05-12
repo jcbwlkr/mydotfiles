@@ -57,7 +57,7 @@ export PATH=${PATH}:${HOME}/bin:${HOME}/.local/bin
 
 # RVM TODO maybe use a omz plugin?
 [ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 
 # Go Lang
 export GOPATH=$HOME/go
