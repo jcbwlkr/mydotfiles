@@ -102,6 +102,7 @@
 
     " Go {{
         Plugin 'fatih/vim-go'
+        Plugin 'cespare/vim-go-templates'
     " }}
 
     " Python {{
@@ -425,6 +426,8 @@
     let g:go_highlight_structs = 1
 
     let g:go_fmt_command = "goimports"
+
+    autocmd BufNewFile,BufRead *.go.html set filetype=gotplhtml
 " }}
 
 " Python {{
