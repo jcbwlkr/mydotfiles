@@ -96,7 +96,6 @@
         Plugin 'spf13/PIV'
         Plugin 'arnaud-lb/vim-php-namespace'
         Plugin 'beyondwords/vim-twig'
-        Plugin 'xsbeats/vim-blade'
         Plugin 'vim-php/tagbar-phpctags.vim'
         Plugin 'vim-php/vim-php-refactoring'
     " }}
@@ -201,7 +200,6 @@
         let custom_width_filetypes = {
             \ 'xml' : 2,
             \ 'html.twig' : 2,
-            \ 'blade' : 2,
             \ 'ruby' : 2,
             \ 'erb' : 2 }
         for [ft, width] in items(custom_width_filetypes)
@@ -407,7 +405,6 @@
     let g:DisableAutoPHPFolding = 0
     let g:PIVAutoClose = 0
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-    autocmd BufNewFile,BufRead *.blade.php set filetype=blade
 
     let g:php_html_in_strings = 0
 
