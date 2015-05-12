@@ -117,6 +117,10 @@
         Plugin 'elzr/vim-json'
     " }}
 
+    " Databases {{
+        Plugin 'veegee/cql-vim'
+    " }}
+
     " Puppet {{
         Plugin 'Puppet-Syntax-Highlighting'
     " }}
