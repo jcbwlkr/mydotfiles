@@ -328,6 +328,7 @@
         let NERDTreeMouseMode=2
         let NERDTreeShowHidden=1
         let NERDTreeKeepTreeInNewTab=1
+        let NERDTreeSortOrder=['\/$', 'main.go$', '\.go$', '*']
         let g:nerdtree_tabs_open_on_gui_startup=0
         let g:NERDShutUp=1
     " }}
@@ -418,21 +419,32 @@
 " }}
 
 " Go {{
-    au FileType go nmap <leader>r <Plug>(go-run)
+    " Convenient mappings for all Go things
+    au FileType go nmap <leader>r :GoRun!<CR>
     au FileType go nmap <leader>e <Plug>(go-rename)
     au FileType go nmap <leader>s <Plug>(go-implements)
-    au FileType go nmap <leader>t <Plug>(go-test)
+    au FileType go nmap <leader>t :GoTest!<CR>
     au FileType go nmap <leader>c <Plug>(go-coverage)
     au FileType go nmap <leader>v <Plug>(go-vet)
     au FileType go nmap <leader>gd <Plug>(go-doc)
 
+    " Highlight more Go stuff
     let g:go_highlight_functions = 1
     let g:go_highlight_methods = 1
     let g:go_highlight_structs = 1
 
+    " Use `goimports` instead of `gofmt`
     let g:go_fmt_command = "goimports"
 
+    " Set custom filetype for Go html/template files
     autocmd BufNewFile,BufRead *.go.html set filetype=gotplhtml
+
+    " Run `gometalinter` on demand
+    function! GoMetaLinter() abort
+        silent cexpr system("gometalinter ./...")
+        cwindow
+    endfunction
+    au FileType go nmap <leader>l :call GoMetaLinter()<CR>
 " }}
 
 " Python {{
