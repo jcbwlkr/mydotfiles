@@ -74,6 +74,7 @@
         Plugin 'vim-scripts/sessionman.vim'
         Plugin 'PeterRincker/vim-argumentative'
         Plugin 'chrisbra/NrrwRgn'
+        Plugin 'editorconfig/editorconfig-vim'
         "Plugin 'joonty/vdebug.git'
     " }}
 
