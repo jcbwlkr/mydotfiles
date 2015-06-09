@@ -76,6 +76,7 @@
         Plugin 'PeterRincker/vim-argumentative'
         Plugin 'chrisbra/NrrwRgn'
         Plugin 'editorconfig/editorconfig-vim'
+        Plugin 'diepm/vim-rest-console'
         "Plugin 'joonty/vdebug.git'
     " }}
 
@@ -310,6 +311,10 @@
 
 " Utility {{
     let g:ackprg="ack -H --nocolor --nogroup --column"
+
+    " Vim REST Console {{
+        let g:vrc_trigger = '<C-J>'
+    " }}
 
     " Vdebug {{
     "    " TODO move this option to .vimrc.local?
