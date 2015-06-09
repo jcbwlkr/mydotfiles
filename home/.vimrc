@@ -52,6 +52,7 @@
         Plugin 'bling/vim-airline'
         Plugin 'godlygeek/csapprox'
         Plugin 'flazz/vim-colorschemes'
+        Plugin 'NLKNguyen/papercolor-theme'
     " }}
 
     " Utility {{
@@ -299,6 +300,7 @@
     " Colorscheme {{
         set background=dark
         colorscheme bubblegum
+        "colorscheme PaperColor
         highlight clear SignColumn
         highlight clear LineNr
         highlight clear CursorLineNr
