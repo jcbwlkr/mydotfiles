@@ -116,6 +116,7 @@
     " Javascript {{
         Plugin 'pangloss/vim-javascript'
         Plugin 'elzr/vim-json'
+        Plugin 'Slava/vim-spacebars'
     " }}
 
     " Databases {{
