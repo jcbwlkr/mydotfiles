@@ -332,6 +332,8 @@
         let NERDTreeSortOrder=['\/$', 'main.go$', '\.go$', '*']
         let g:nerdtree_tabs_open_on_gui_startup=0
         let g:NERDShutUp=1
+
+        nmap <Leader>e :NERDTreeToggle<CR>
     " }}
 
     " Tabular {{
@@ -456,6 +458,7 @@
 
 " JavaScript {{
     nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+    nmap <leader>jT <Esc>:.!python -m json.tool<CR><Esc>:set filetype=json<CR>
     let g:vim_json_syntax_conceal = 0
 " }}
 
