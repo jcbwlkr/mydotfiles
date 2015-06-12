@@ -264,7 +264,8 @@
     set whichwrap=                  " Don't go to previous lines when going left/right
     set scrolljump=5                " Lines to scroll when cursor leaves screen
     set scrolloff=2                 " Minimum lines to keep above and below cursor
-    set foldenable                  " Auto fold code
+    set nofoldenable                " Don't auto fold code
+    set foldmethod=syntax           " Fold based on syntax
 
     set nowrap                      " Don't wrap long lines
     set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
