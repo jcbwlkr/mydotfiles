@@ -361,8 +361,7 @@
     " }}
 
     " Syntastic {{
-        let g:syntastic_php_checkers = ['php']
-        let g:syntastic_php_phpcs_post_args = "--standard=psr2 -n"
+        let g:syntastic_aggregate_errors = 1
     " }}
 
     " CTRL P {{
@@ -426,6 +425,9 @@
     let g:php_html_in_strings = 0
 
     let g:php_refactor_command='refactor'
+
+    let g:syntastic_php_checkers = ['php']
+    let g:syntastic_php_phpcs_post_args = "--standard=psr2 -n"
 " }}
 
 " Go {{
@@ -445,6 +447,8 @@
 
     " Use `goimports` instead of `gofmt`
     let g:go_fmt_command = "goimports"
+
+    let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'gotype']
 
     " Set custom filetype for Go html/template files
     autocmd BufNewFile,BufRead *.go.html set filetype=gotplhtml
