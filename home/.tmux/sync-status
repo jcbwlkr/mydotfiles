@@ -1,8 +1,0 @@
-#!/bin/bash
-if [[ -e $HOME/.vim/syncing ]]; then
-    echo "↻"
-elif [[ -e $HOME/.vim/sync-failed ]]; then
-    echo "✘"
-else
-    echo "✔"
-fi

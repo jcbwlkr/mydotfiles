@@ -50,6 +50,7 @@
 
     " Colors and UI {{
         Plugin 'bling/vim-airline'
+        "Plugin 'edkolev/tmuxline.vim'
         Plugin 'godlygeek/csapprox'
         Plugin 'flazz/vim-colorschemes'
         Plugin 'NLKNguyen/papercolor-theme'
@@ -77,6 +78,7 @@
         Plugin 'chrisbra/NrrwRgn'
         Plugin 'editorconfig/editorconfig-vim'
         Plugin 'diepm/vim-rest-console'
+        Plugin 'EinfachToll/DidYouMean'
         "Plugin 'joonty/vdebug.git'
     " }}
 
@@ -106,6 +108,7 @@
     " Go {{
         Plugin 'fatih/vim-go'
         Plugin 'cespare/vim-go-templates'
+        Plugin 'corylanou/vim-present'
     " }}
 
     " Python {{
@@ -290,19 +293,26 @@
         if !exists('g:airline_symbols')
           let g:airline_symbols = {}
         endif
-        let g:airline_theme='bubblegum'
         let g:airline_left_sep='ᐳ'
         let g:airline_left_alt_sep='ᐳ'
         let g:airline_right_sep='ᐸ'
         let g:airline_right_alt_sep='ᐸ'
         let g:airline_symbols.branch='⎇'
-
     " }}
 
     " Colorscheme {{
-        set background=dark
-        colorscheme bubblegum
-        "colorscheme PaperColor
+        " Default to a light theme
+        set background=light
+        colorscheme PaperColor
+        let g:airline_theme='papercolor'
+
+        if $THEME == "dark"
+          set background=dark
+          colorscheme bubblegum
+          let g:airline_theme='bubblegum'
+        end
+
+
         highlight clear SignColumn
         highlight clear LineNr
         highlight clear CursorLineNr
@@ -314,7 +324,12 @@
     let g:ackprg="ack -H --nocolor --nogroup --column"
 
     " Vim REST Console {{
-        let g:vrc_trigger = '<C-J>'
+        let g:vrc_trigger = '<leader>r'
+
+        " Add filetype `rest` to NERDCommenter
+        let g:NERDCustomDelimiters = {
+        \ 'rest': { 'left': '# ' }
+        \ }
     " }}
 
     " Vdebug {{
@@ -337,7 +352,7 @@
         let NERDTreeMouseMode=2
         let NERDTreeShowHidden=1
         let NERDTreeKeepTreeInNewTab=1
-        let NERDTreeSortOrder=['\/$', 'main.go$', '\.go$', '*']
+        let NERDTreeSortOrder=['\/$', '^main.go$', '\.go$', '*']
         let g:nerdtree_tabs_open_on_gui_startup=0
         let g:NERDShutUp=1
 
@@ -449,7 +464,8 @@
     " Use `goimports` instead of `gofmt`
     let g:go_fmt_command = "goimports"
 
-    let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'gotype']
+    let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+    let g:syntastic_go_go_test_args="-tags=integration"
 
     " Set custom filetype for Go html/template files
     autocmd BufNewFile,BufRead *.go.html set filetype=gotplhtml
