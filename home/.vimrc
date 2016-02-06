@@ -49,7 +49,8 @@
 " Plugins {{
 
     " Colors and UI {{
-        Plugin 'bling/vim-airline'
+        Plugin 'vim-airline/vim-airline'
+        Plugin 'vim-airline/vim-airline-themes'
         "Plugin 'edkolev/tmuxline.vim'
         Plugin 'godlygeek/csapprox'
         Plugin 'flazz/vim-colorschemes'
