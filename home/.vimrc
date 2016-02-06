@@ -67,7 +67,7 @@
         Plugin 'majutsushi/tagbar'
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'mileszs/ack.vim'
-        Plugin 'kristijanhusak/vim-multiple-cursors'
+        Plugin 'terryma/vim-multiple-cursors'
         Plugin 'tpope/vim-abolish.git'
         Plugin 'tpope/vim-surround'
         Plugin 'tpope/vim-repeat'
@@ -455,16 +455,19 @@
     au FileType go nmap <leader>c <Plug>(go-coverage)
     au FileType go nmap <leader>v <Plug>(go-vet)
     au FileType go nmap <leader>gd <Plug>(go-doc)
+    au FileType go nmap <leader>d :GoDef<CR>
 
     " Highlight more Go stuff
     let g:go_highlight_functions = 1
     let g:go_highlight_methods = 1
     let g:go_highlight_structs = 1
+    let g:go_highlight_build_constraints = 1
 
     " Use `goimports` instead of `gofmt`
     let g:go_fmt_command = "goimports"
 
-    let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+    let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
+    "let g:syntastic_go_checkers = ['go']
     let g:syntastic_go_go_test_args="-tags=integration"
     let g:syntastic_go_go_build_args="-o /tmp/"
 
@@ -580,6 +583,9 @@
 
     " Macro for PHPUnit to change a getMock to a getMockBuilder with the constructor disabled
     let @c='0/getMock:nohf(iBuilderf;i->disableOriginalConstructor()->getMock()'
+
+    " Macro to format the json diff output from Gomega's MatchJSON
+    " gg0df:/to matchdddf:dG:vnewp jt jt
 
     " Show syntax highlighting groups for word under cursor
     " From http://stackoverflow.com/a/7893500/859353
