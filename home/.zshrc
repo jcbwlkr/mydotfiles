@@ -64,9 +64,10 @@ export PATH=${PATH}:${HOME}/bin:${HOME}/.local/bin
 [ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
 PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 
-# Go Lang
+# Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export GO15VENDOREXPERIMENT=1
 
 # Node.js NVM
 export NVM_DIR="${HOME}/.nvm"
@@ -84,3 +85,6 @@ bindkey "^[m" copy-earlier-word
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Android tools
+export PATH="$PATH:/Users/jwalker/Library/Android/sdk/platform-tools"
