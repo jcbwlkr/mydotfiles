@@ -474,7 +474,7 @@
     let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
     "let g:syntastic_go_checkers = ['go']
     let g:syntastic_go_go_test_args="-tags=integration"
-    let g:syntastic_go_go_build_args="-o /tmp/"
+    let g:syntastic_go_go_build_args="-gcflags '-e'"
 
     " Set custom filetype for Go html/template files
     autocmd BufNewFile,BufRead *.go.html set filetype=gotplhtml
