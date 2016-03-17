@@ -229,6 +229,8 @@
         set hlsearch                    " Highlight search terms
         set ignorecase                  " Case insensitive search
         set smartcase                   " Case sensitive when upper case characters are present
+        " Hit backspace in normal mode to clear hlsearch
+        nmap <silent> <BS> :nohlsearch<CR>
     " }}
 
     set number
@@ -358,6 +360,7 @@
         let g:NERDShutUp=1
 
         nmap <Leader>e :NERDTreeToggle<CR>
+        nmap <Leader>F :NERDTreeFind<CR>
     " }}
 
     " Tabular {{
@@ -457,6 +460,7 @@
     au FileType go nmap <leader>v <Plug>(go-vet)
     au FileType go nmap <leader>gd <Plug>(go-doc)
     au FileType go nmap <leader>d :GoDef<CR>
+    au FileType go nmap <leader>D :GoDescribe<CR>
 
     " Highlight more Go stuff
     let g:go_highlight_functions = 1
