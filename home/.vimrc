@@ -55,6 +55,7 @@
         Plugin 'godlygeek/csapprox'
         Plugin 'flazz/vim-colorschemes'
         Plugin 'NLKNguyen/papercolor-theme'
+        Plugin 'jcbwlkr/nofrils'
     " }}
 
     " Utility {{
@@ -306,7 +307,8 @@
     " Colorscheme {{
         " Default to a light theme
         set background=light
-        colorscheme PaperColor
+        "colorscheme PaperColor
+        colorscheme nofrils-light
         let g:airline_theme='papercolor'
 
         if $THEME == "dark"
@@ -463,10 +465,10 @@
     au FileType go nmap <leader>D :GoDescribe<CR>
 
     " Highlight more Go stuff
-    let g:go_highlight_functions = 1
-    let g:go_highlight_methods = 1
-    let g:go_highlight_structs = 1
-    let g:go_highlight_build_constraints = 1
+    "let g:go_highlight_functions = 1
+    "let g:go_highlight_methods = 1
+    "let g:go_highlight_structs = 1
+    "let g:go_highlight_build_constraints = 1
 
     " Use `goimports` instead of `gofmt`
     let g:go_fmt_command = "goimports"
