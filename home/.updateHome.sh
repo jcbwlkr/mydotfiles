@@ -18,6 +18,8 @@ function installPackage() {
         sudo yum --assumeyes install $yum_package
     fi
 }
+# TODO homebrew
+# ack
 dependencies=( git "gvim|vim-gnome" tmux ctags zsh )
 for i in "${dependencies[@]}"; do
     installPackage $i
