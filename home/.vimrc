@@ -49,9 +49,6 @@
 " Plugins {{
 
     " Colors and UI {{
-        Plugin 'vim-airline/vim-airline'
-        Plugin 'vim-airline/vim-airline-themes'
-        "Plugin 'edkolev/tmuxline.vim'
         Plugin 'godlygeek/csapprox'
         Plugin 'flazz/vim-colorschemes'
         Plugin 'NLKNguyen/papercolor-theme'
@@ -291,17 +288,20 @@
 
     " Status line {{
         set laststatus=2 " Always show status line
-        set showcmd      " Show partial commands in status line and selected
-                         " characters/lines in visual mode
 
-        if !exists('g:airline_symbols')
-          let g:airline_symbols = {}
-        endif
-        let g:airline_left_sep='ᐳ'
-        let g:airline_left_alt_sep='ᐳ'
-        let g:airline_right_sep='ᐸ'
-        let g:airline_right_alt_sep='ᐸ'
-        let g:airline_symbols.branch='⎇'
+        set statusline=%f       " Path to the file
+        set statusline+=%<      " If status line is too long truncate here
+        set statusline+=\ %y    " File type, e.g. [go]
+        set statusline+=%r      " [RO] if file is read only
+        set statusline+=%m      " [+] if file is modified
+        set statusline+=%=      " Switch to right side
+        set statusline+=%p%%    " Percentage through file in lines
+        set statusline+=\ %l,%c " Line, Column numbers
+
+        set showmode " Show current mode below the status line on left side
+                     " (when not in normal mode)
+        set showcmd  " Show partial commands below the status line on the
+                     " right (and selected characters/lines in visual mode)
     " }}
 
     " Colorscheme {{
@@ -309,18 +309,11 @@
         set background=light
         "colorscheme PaperColor
         colorscheme nofrils-light
-        let g:airline_theme='papercolor'
 
         if $THEME == "dark"
           set background=dark
           colorscheme bubblegum
-          let g:airline_theme='bubblegum'
         end
-
-
-        highlight clear SignColumn
-        highlight clear LineNr
-        highlight clear CursorLineNr
     " }}
 
 " }}
