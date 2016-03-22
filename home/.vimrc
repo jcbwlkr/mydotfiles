@@ -1,5 +1,3 @@
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=0 foldmethod=marker spell:
-"
 " Personal .vimrc of Jacob Walker (@jcbwlkr)
 "
 "   _    _           _ _
@@ -47,101 +45,35 @@
 " }}
 
 " Plugins {{
+    " General Plugins
+    Plugin 'jcbwlkr/nofrils'                 " My fork of the 'No Frills' minimal color scheme
+    Plugin 'scrooloose/nerdtree'             " IDE like file browser
+    Plugin 'jistr/vim-nerdtree-tabs'         " Make NERDTree work better with tabs
+    Plugin 'godlygeek/tabular'               " Used to vertically align stuff
+    Plugin 'scrooloose/syntastic'            " Automatic linting/checking on save
+    Plugin 'ctrlpvim/ctrlp.vim'              " Fuzzy file searching
+    Plugin 'majutsushi/tagbar'               " Overview of symbols in a file
+    Plugin 'scrooloose/nerdcommenter'        " Used to quickly comment/uncomment lines
+    Plugin 'mileszs/ack.vim'                 " Use Ack or Ag from within vim
+    Plugin 'terryma/vim-multiple-cursors'    " Sublime style multiple cursors
+    Plugin 'tpope/vim-abolish.git'           " Search for, substitute, and abbreviate multiple variants of a word
+    Plugin 'tpope/vim-surround'              " Act on the surroundings of a thing
+    Plugin 'tpope/vim-repeat'                " Used by other plugins to enable `.` repeating
+    Plugin 'PeterRincker/vim-argumentative'  " Swap argument order on functions
+    Plugin 'editorconfig/editorconfig-vim'   " Respect project specific .editor-config files
+    Plugin 'EinfachToll/DidYouMean'          " Prompt to open the correct file when you prematurely hit enter
+    Plugin 'mhinz/vim-signify'               " Show VCS status by line numbers
+    Plugin 'tpope/vim-fugitive'              " Do Git stuff from vim
+    Plugin 'mattn/gist-vim'                  " Publish Gists from vim
+    Plugin 'mattn/webapi-vim'                " Used by other plugins like mattn/gist
+    Plugin 'matchit.zip'                     " Make % motion match more things
+    Plugin 'diepm/vim-rest-console'          " Explore REST APIs from vim
+    Plugin 'vimwiki'                         " Manage a personal Wiki from vim
+    Plugin 'beloglazov/vim-online-thesaurus' " Look up synonyms of words from vim
+    " TODO snippets?
 
-    " Colors and UI {{
-        Plugin 'godlygeek/csapprox'
-        Plugin 'flazz/vim-colorschemes'
-        Plugin 'NLKNguyen/papercolor-theme'
-        Plugin 'jcbwlkr/nofrils'
-    " }}
-
-    " Utility {{
-        " TODO snippets?
-        Plugin 'scrooloose/nerdtree'
-        Plugin 'jistr/vim-nerdtree-tabs'
-        Plugin 'godlygeek/tabular'
-        Plugin 'jlemetay/permut'
-        Plugin 'scrooloose/syntastic'
-        Plugin 'ctrlpvim/ctrlp.vim'
-        Plugin 'majutsushi/tagbar'
-        Plugin 'scrooloose/nerdcommenter'
-        Plugin 'mileszs/ack.vim'
-        Plugin 'terryma/vim-multiple-cursors'
-        Plugin 'tpope/vim-abolish.git'
-        Plugin 'tpope/vim-surround'
-        Plugin 'tpope/vim-repeat'
-        Plugin 'tpope/vim-speeddating'
-        Plugin 'vim-scripts/restore_view.vim'
-        Plugin 'vim-scripts/sessionman.vim'
-        Plugin 'PeterRincker/vim-argumentative'
-        Plugin 'chrisbra/NrrwRgn'
-        Plugin 'editorconfig/editorconfig-vim'
-        Plugin 'diepm/vim-rest-console'
-        Plugin 'EinfachToll/DidYouMean'
-        "Plugin 'joonty/vdebug.git'
-    " }}
-
-    " Version Control {{
-        Plugin 'mhinz/vim-signify'
-        Plugin 'tpope/vim-fugitive'
-    " }}
-
-    " Navigation {{
-        Plugin 'skwp/vim-easymotion'
-        Plugin 'matchit.zip'
-    " }}
-
-    " HTML / CSS {{
-        Plugin 'groenewege/vim-less'
-        Plugin 'hail2u/vim-css3-syntax'
-    " }}
-
-    " PHP {{
-        Plugin 'spf13/PIV'
-        Plugin 'arnaud-lb/vim-php-namespace'
-        Plugin 'beyondwords/vim-twig'
-        Plugin 'vim-php/tagbar-phpctags.vim'
-        Plugin 'vim-php/vim-php-refactoring'
-    " }}
-
-    " Go {{
-        Plugin 'fatih/vim-go'
-        Plugin 'cespare/vim-go-templates'
-        Plugin 'corylanou/vim-present'
-    " }}
-
-    " Python {{
-        Plugin 'klen/python-mode'
-        Plugin 'python.vim'
-        Plugin 'python_match.vim'
-        Plugin 'pythoncomplete'
-    " }}
-
-    " Javascript {{
-        Plugin 'pangloss/vim-javascript'
-        Plugin 'elzr/vim-json'
-        Plugin 'Slava/vim-spacebars'
-    " }}
-
-    " Databases {{
-        Plugin 'veegee/cql-vim'
-    " }}
-
-    " Puppet {{
-        Plugin 'Puppet-Syntax-Highlighting'
-    " }}
-
-    " Markdown {{
-        Plugin 'tpope/vim-markdown'
-    " " }}
-
-    " Misc {{
-        Plugin 'vim-scripts/TwitVim'
-        Plugin 'vimwiki'
-        Plugin 'mattn/webapi-vim'
-        Plugin 'mattn/gist-vim'
-        Plugin 'beloglazov/vim-online-thesaurus'
-    " }}
+    " Language Specific Plugins
+    Plugin 'fatih/vim-go' " The de facto standard for Go dev in vim
 
     call vundle#end() " Done adding plugins
 
@@ -305,17 +237,9 @@
     " }}
 
     " Colorscheme {{
-        " Default to a light theme
         set background=light
-        "colorscheme PaperColor
         colorscheme nofrils-light
-
-        if $THEME == "dark"
-          set background=dark
-          colorscheme bubblegum
-        end
     " }}
-
 " }}
 
 " Utility {{
@@ -330,49 +254,19 @@
         \ }
     " }}
 
-    " Vdebug {{
-    "    " TODO move this option to .vimrc.local?
-    "    let g:vdebug_options = {
-    "    \   "ide_key": "vim",
-    "    \   "break_on_open" : 1,
-    "    \   "watch_window_style" : "compact",
-    "    \   "path_maps": {
-    "    \       "/var/www/html": "/home/jwalker/Projects/TimeIPS-server",
-    "    \   }
-    "    \}
-    " }}
-
     " NERDTree {{
         let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+        let NERDTreeIgnore=['\.pyc', '\~$', '\.sw[op]$', '\.git', '\.hg', '\.svn', '\.bzr']
         let NERDTreeChDirMode=0
         let NERDTreeQuitOnOpen=0
         let NERDTreeMouseMode=2
         let NERDTreeShowHidden=1
         let NERDTreeKeepTreeInNewTab=1
-        let NERDTreeSortOrder=['\/$', '^main.go$', '\.go$', '*']
+        let NERDTreeSortOrder=['\/$', '^main.go$', '^main_test.go$', '^[A-Z].*\.go$', '\.go$']
         let g:nerdtree_tabs_open_on_gui_startup=0
-        let g:NERDShutUp=1
 
         nmap <Leader>e :NERDTreeToggle<CR>
         nmap <Leader>F :NERDTreeFind<CR>
-    " }}
-
-    " Tabular {{
-        nmap <Leader>a& :Tabularize /&<CR>
-        vmap <Leader>a& :Tabularize /&<CR>
-        nmap <Leader>a= :Tabularize /=<CR>
-        vmap <Leader>a= :Tabularize /=<CR>
-        nmap <Leader>a: :Tabularize /:<CR>
-        vmap <Leader>a: :Tabularize /:<CR>
-        nmap <Leader>a:: :Tabularize /:\zs<CR>
-        vmap <Leader>a:: :Tabularize /:\zs<CR>
-        nmap <Leader>a, :Tabularize /,<CR>
-        vmap <Leader>a, :Tabularize /,<CR>
-        nmap <Leader>a,, :Tabularize /,\zs<CR>
-        vmap <Leader>a,, :Tabularize /,\zs<CR>
-        nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-        vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     " }}
 
     " Syntastic {{
@@ -411,38 +305,8 @@
     " }}
 " }}
 
-" Version Control {{
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gl :Glog<CR>
-    nnoremap <silent> <leader>gp :Git push<CR>
-    nnoremap <silent> <leader>gr :Gread<CR>:GitGutter<CR>
-    nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
-    nnoremap <silent> <leader>ge :Gedit<CR>
-    nnoremap <silent> <leader>gg :GitGutterToggle<CR>
-" }}
-
 " Navigation {{
     let b:match_ignorecase = 1
-" }}
-
-" HTML / CSS {{
-    autocmd BufNewFile,BufRead *.less set filetype=less
-" }}
-
-" PHP {{
-    let g:DisableAutoPHPFolding = 0
-    let g:PIVAutoClose = 0
-    autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-
-    let g:php_html_in_strings = 0
-
-    let g:php_refactor_command='refactor'
-
-    let g:syntastic_php_checkers = ['php']
-    let g:syntastic_php_phpcs_post_args = "--standard=psr2 -n"
 " }}
 
 " Go {{
@@ -457,48 +321,21 @@
     au FileType go nmap <leader>d :GoDef<CR>
     au FileType go nmap <leader>D :GoDescribe<CR>
 
-    " Highlight more Go stuff
-    "let g:go_highlight_functions = 1
-    "let g:go_highlight_methods = 1
-    "let g:go_highlight_structs = 1
-    "let g:go_highlight_build_constraints = 1
-
     " Use `goimports` instead of `gofmt`
     let g:go_fmt_command = "goimports"
 
     let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
-    "let g:syntastic_go_checkers = ['go']
     let g:syntastic_go_go_test_args="-tags=integration"
     let g:syntastic_go_go_build_args="-gcflags '-e'"
-
-    " Set custom filetype for Go html/template files
-    autocmd BufNewFile,BufRead *.go.html set filetype=gotplhtml
-
-    " Run `gometalinter` on demand
-    function! GoMetaLinter() abort
-        silent cexpr system("gometalinter ./...")
-        cwindow
-    endfunction
-    au FileType go nmap <leader>l :call GoMetaLinter()<CR>
 " }}
 
-" Python {{
-    let g:pymode_lint_checker = "pyflakes"
-    let g:pymode_utils_whitespaces = 0
-    let g:pymode_options = 0
-" }}
-
-" JavaScript {{
+" JSON {{
     nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
     nmap <leader>jT <Esc>:.!python -m json.tool<CR><Esc>:set filetype=json<CR>
     let g:vim_json_syntax_conceal = 0
 " }}
 
 " Misc Fun Things {{
-    " Twitvim {{
-        let g:twitvim_count = 50  " Show me 50 tweets at a time
-    " }}
-
     " Vimwiki {{
         let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vimwiki_html/', 'auto_export': '1'}]
     " }}
@@ -530,7 +367,6 @@
     nnoremap Y y$
 
     " Code folding options
-    nmap <Leader>ff :EnableFastPHPFolds<CR>
     nmap <leader>f0 :set foldlevel=0<CR>
     nmap <leader>f1 :set foldlevel=1<CR>
     nmap <leader>f2 :set foldlevel=2<CR>
@@ -556,13 +392,8 @@
     " Adjust viewports to the same size
     map <Leader>= <C-w>=
 
-    " Mapping to fix syntax for the whole file
-    nmap <leader>fs :syn sync fromstart<CR>
-
     " Just close this buffer, dang it
     nmap <leader>bd :bd!<cr>
-
-    " TODO something to toggle spell
 
     " Easier horizontal scrolling
     map zl zL
@@ -589,7 +420,7 @@
 
     " Show syntax highlighting groups for word under cursor
     " From http://stackoverflow.com/a/7893500/859353
-    nmap <F2> :call <SID>SynStack()<CR>
+    nmap <leader>sn :call <SID>SynStack()<CR>
     function! <SID>SynStack()
         if !exists("*synstack")
             return
