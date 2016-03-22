@@ -34,7 +34,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="${COLOR_RESET}${COLOR_BLUE})"
 ZSH_THEME_GIT_PROMPT_DIRTY="${COLOR_RESET}${COLOR_RED} ✘${COLOR_RESET}"
 ZSH_THEME_GIT_PROMPT_CLEAN="${COLOR_RESET}${COLOR_GREEN} ✔${COLOR_RESET}"
 
-# Prevent virtualenv from mucking with my prompt
+# Prevent python virtualenv from mucking with my prompt
 VIRTUAL_ENV_DISABLE_PROMPT=1
 function virtualenv_prompt_info() {
     [[ "" == $VIRTUAL_ENV ]] && return
@@ -53,12 +53,7 @@ elif [ -e /usr/bin/vim ]; then
     export EDITOR=/usr/bin/vim
 fi
 
-# Define my XDG dirs for things like powerline
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}:${HOME}/.my_config:/etc/xdg"
-
-export PATH=$PATH:/usr/lib/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin
-export PATH=${PATH}:${HOME}/bin:${HOME}/.local/bin
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 
 # RVM TODO maybe use a omz plugin?
 [ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
@@ -67,16 +62,10 @@ PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 # Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export GO15VENDOREXPERIMENT=1
 
 # Node.js NVM
 export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" || true
-
-# Enable M-m to cycle through arguments of previous commands
-autoload -Uz copy-earlier-word
-zle -N copy-earlier-word
-bindkey "^[m" copy-earlier-word
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases || true
 
@@ -84,7 +73,7 @@ bindkey "^[m" copy-earlier-word
 [ -f ~/.zshrc_local ] && . ~/.zshrc_local || true
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$PATH:/usr/local/heroku/bin"
 
 # Android tools
 export PATH="$PATH:/Users/jwalker/Library/Android/sdk/platform-tools"
