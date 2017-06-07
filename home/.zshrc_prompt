@@ -1,0 +1,40 @@
+###################
+# Style My prompt #
+###################
+
+# Define some variables for referencing color codes like $COLOR_WHITE and
+# $COLOR_BRIGHT_RED. The special variable $COLOR_DEBUG can be echoed at any
+# time to see the different color options.
+COLOR_DEBUG=""
+for COLOR in CYAN WHITE YELLOW MAGENTA BLACK BLUE RED DEFAULT GREEN GREY; do
+    eval COLOR_$COLOR='%{$fg[${(L)COLOR}]%}'
+    eval COLOR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+    COLOR_DEBUG=${COLOR_DEBUG}${reset_color}$fg[${(L)COLOR}]"COLOR_$COLOR\t"
+    COLOR_DEBUG=${COLOR_DEBUG}${reset_color}$fg_bold[${(L)COLOR}]"COLOR_BRIGHT_$COLOR"
+    COLOR_DEBUG=${COLOR_DEBUG}"\n"
+done
+COLOR_RESET="%{$reset_color%}"
+
+# The omz git plugin gives us the function git_prompt_info but 
+ZSH_THEME_GIT_PROMPT_PREFIX=" ${COLOR_RESET}${COLOR_BLUE}(⎇ "
+ZSH_THEME_GIT_PROMPT_SUFFIX="${COLOR_RESET}${COLOR_BLUE})"
+ZSH_THEME_GIT_PROMPT_DIRTY="${COLOR_RESET}${COLOR_RED} ✘${COLOR_RESET}"
+ZSH_THEME_GIT_PROMPT_CLEAN="${COLOR_RESET}${COLOR_GREEN} ✔${COLOR_RESET}"
+
+# If I'm using python's virtualenv I don't want it to interfere with my prompt.
+# I have my own function that prints "Snakehead" in Chinese in purple.
+VIRTUAL_ENV_DISABLE_PROMPT=1
+function virtualenv_prompt_info() {
+    [[ "" == $VIRTUAL_ENV ]] && return
+
+    print " ${COLOR_RESET}${COLOR_MAGENTA}鱧$(basename $VIRTUAL_ENV)${COLOR_RESET}"
+}
+
+# Build up actual prompt
+PROMPT=$COLOR_CYAN'%4~'                                  # Start with the current path
+PROMPT=$PROMPT'$(virtualenv_prompt_info)'                # Python thing if using
+PROMPT=$PROMPT'$(git_prompt_info)'                       # Git info
+PROMPT=$PROMPT$COLOR_BLACK'%(1j. jobs:%j.)'$COLOR_RESET  # Number of backgrounded jobs if >0
+PROMPT=$PROMPT$COLOR_BLACK'%(3L. shlvl:%L.)'$COLOR_RESET # Number of nested shells if I'm more than 3 deep. 2nd level is from tmux.
+PROMPT=$PROMPT$COLOR_BRIGHT_RED'%(?.. %?)'$COLOR_RESET   # Return status of last command if non-zero
+PROMPT=$PROMPT$COLOR_CYAN' $'$COLOR_RESET' '             # Prompt ends with a $ and a space

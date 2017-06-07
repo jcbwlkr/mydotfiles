@@ -1,0 +1,20 @@
+############################
+# Aliases I want to define #
+############################
+
+# I don't want this alias that comes from the git plugin
+unalias gb
+
+alias 'tmux'='tmux -2'
+
+# Platform specific aliases
+case "$(uname -s)" in
+   Darwin)
+     ;;
+
+   Linux)
+        alias 'ls'='ls --classify --color=auto --group-directories-first -H'
+        # Use vimx if it's available
+        hash vimx && alias 'vim'='vimx'
+     ;;
+esac

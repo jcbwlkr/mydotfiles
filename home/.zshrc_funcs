@@ -1,0 +1,45 @@
+##########################################
+# Functions to enhance my zsh experience #
+##########################################
+
+# Runs all arguments then uses "say" to audibly report success or failure
+function doTest {
+    $@ && say "Tests passed" || say "Tests failed"
+}
+
+# call `upto foo` to cd up to a parent folder matching the regular expression
+# foo, potentially going up many levels. The expression is matched 
+function upto() {
+	EXPRESSION="$1"
+	if [ -z "$EXPRESSION" ]; then
+		echo "A folder expression must be provided"
+		return 1
+	else
+		CURRENT_FOLDER="$(pwd)"
+		MATCHED_DIR=""
+		MATCHING=true
+
+		while [ "$MATCHING" = true ]; do
+			if [[ "$CURRENT_FOLDER" =~ "$EXPRESSION" ]]; then
+				MATCHED_DIR="$CURRENT_FOLDER"
+				CURRENT_FOLDER="$(dirname $CURRENT_FOLDER)"
+			else
+				MATCHING=false
+			fi
+		done
+		if [ -n "$MATCHED_DIR" ]; then
+			cd $MATCHED_DIR
+		else
+			echo "No Match."
+			return 2
+		fi
+	fi
+}
+
+# call `strtotime 2008-08-14` to get a timestamp
+function strtotime() {
+    php -r "date_default_timezone_set('UTC'); echo strtotime('${1}');"
+}
+
+# Little helper function for getting sraight to a project's vrc file
+function vrc() { mkdir -p notes; vim notes/vrc.rest }
