@@ -13,3 +13,4 @@
     path = ~/.config/git/overrides
 [core]
 	pager = less -x4
+	excludesfile = /Users/jwalker/.gitignore
