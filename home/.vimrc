@@ -47,6 +47,7 @@
 " Plugins {{
     " General Plugins
     Plugin 'jcbwlkr/nofrils'                 " My fork of the 'No Frills' minimal color scheme
+    Plugin 'NLKNguyen/papercolor-theme'      " The theme I like to use when I want some color
     Plugin 'scrooloose/nerdtree'             " IDE like file browser
     Plugin 'jistr/vim-nerdtree-tabs'         " Make NERDTree work better with tabs
     Plugin 'godlygeek/tabular'               " Used to vertically align stuff
@@ -229,7 +230,8 @@
 
     " Colorscheme {{
         set background=light
-        colorscheme nofrils-light
+        colorscheme PaperColor
+        "colorscheme nofrils-light
     " }}
 " }}
 
