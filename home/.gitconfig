@@ -1,16 +1,24 @@
 [user]
-    name = Jacob Walker
-    email = jacobwalker0814@gmail.com
+	name = Jacob Walker
+	email = jacobwalker0814@gmail.com
 [color]
-    ui = auto
+	ui = auto
 [push]
-    default = matching
+	default = matching
 [merge]
-    log = true
+	log = true
 [github]
-    user = jcbwlkr
+	user = jcbwlkr
 [include]
-    path = ~/.config/git/overrides
+	path = ~/.config/git/overrides
 [core]
 	pager = less -x4
 	excludesfile = /Users/jwalker/.gitignore
+[alias]
+	; Show effective changes between this branch and the remote master branch.
+	; Used when reviewing a PR with lots of commits/merges.
+	review = !git diff --stat -p -w $(git merge-base HEAD origin/master)
+[http]
+	cookiefile = /Users/jwalker/.gitcookies
+[rerere]
+	enabled = true
