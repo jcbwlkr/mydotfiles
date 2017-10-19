@@ -33,7 +33,7 @@ fi
 
 # Define customizations to $PATH
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin                        # Local binaries I might make
-export PATH=$PATH:$GOPATH/bin                                       # Make `go install`ed binaries just work
+export PATH=$PATH:$(go env GOPATH)/bin                              # Make `go install`ed binaries just work
 export PATH=$PATH:`yarn global bin`                                 # Globally installed node things
 export PATH=$PATH:/usr/local/heroku/bin                             # Added by the Heroku Toolbelt
 export PATH=$PATH:/Users/jwalker/Library/Android/sdk/platform-tools # Android tools
