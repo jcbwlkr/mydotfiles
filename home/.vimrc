@@ -193,7 +193,7 @@
     set scrolljump=5                " Lines to scroll when cursor leaves screen
     set scrolloff=2                 " Minimum lines to keep above and below cursor
     set nofoldenable                " Don't auto fold code
-    set foldmethod=syntax           " Fold based on syntax
+    set cm=blowfish2                " Use blowfish for VimCrypt
 
     set nowrap                      " Don't wrap long lines
     set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
@@ -221,6 +221,7 @@
         set statusline+=%=      " Switch to right side
         set statusline+=%p%%    " Percentage through file in lines
         set statusline+=\ %l,%c " Line, Column numbers
+        set statusline+=\ [%o]    " Byte offset in the file
 
         set showmode " Show current mode below the status line on left side
                      " (when not in normal mode)
@@ -240,6 +241,15 @@
 
     " Vim REST Console {{
         let g:vrc_trigger = '<leader>r'
+        let g:vrc_auto_format_response_patterns = {
+        \   'json': 'jq .',
+        \}
+
+        let g:vrc_curl_opts = {
+        \ '--silent' : '',
+        \ '--include' : '',
+        \ '--insecure' : '',
+        \}
 
         " Add filetype `rest` to NERDCommenter
         let g:NERDCustomDelimiters = {
@@ -312,10 +322,11 @@
     au FileType go nmap <leader>r :GoRun!<CR>
     au FileType go nmap <leader>e <Plug>(go-rename)
     au FileType go nmap <leader>s <Plug>(go-implements)
-    au FileType go nmap <leader>t :GoTest!<CR>
+    au FileType go nmap <leader>gt :GoTest!<CR>
     au FileType go nmap <leader>c <Plug>(go-coverage)
     au FileType go nmap <leader>v <Plug>(go-vet)
     au FileType go nmap <leader>gd <Plug>(go-doc)
+    au FileType go nmap <leader>ga :GoAlternate!<CR>
     au FileType go nmap <leader>d :GoDef<CR>
     au FileType go nmap <leader>D :GoDescribe<CR>
 
@@ -324,8 +335,9 @@
 " }}
 
 " JSON {{
-    nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-    nmap <leader>jT <Esc>:.!python -m json.tool<CR><Esc>:set filetype=json<CR>
+    " Use jq to pretty print json files
+    nmap <leader>jt <Esc>:%!jq .<CR><Esc>:set filetype=json<CR>
+    nmap <leader>jT <Esc>:.!jq .<CR><Esc>:set filetype=json<CR>
     let g:vim_json_syntax_conceal = 0
 " }}
 
@@ -403,14 +415,11 @@
     " I don't like having this always on so I invoke it on command.
     let @w=':%s/ \+$//'
 
-    " Macro for PHPUnit to change a setter to an assertEquals and a getter
-    let @e='^i$this->assertEquals(f(ldt)li)F(F(pa, />setlrg:noh^j'
+    " Macro to condense two lines of an if statement into one
+    let @e='^iif Jxxr;'
 
-    " Macro for PHPUnit to change a getMock to a getMockBuilder with the constructor disabled
-    let @c='0/getMock:nohf(iBuilderf;i->disableOriginalConstructor()->getMock()'
-
-    " Macro to format the json diff output from Gomega's MatchJSON
-    " gg0df:/to matchdddf:dG:vnewp jt jt
+    " Macro to change the contents of some quotes with a new uuid
+    let @i='ci"k:.!uuidgengu$kJxJx'
 
     " Show syntax highlighting groups for word under cursor
     " From http://stackoverflow.com/a/7893500/859353
@@ -421,6 +430,10 @@
         endif
         echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
     endfunc
+
+    " URL encode/decode the current line
+    nmap <leader>u :.!php -r 'print urlencode(fgets(STDIN));'<CR>
+    nmap <leader>U :.!php -r 'print urldecode(fgets(STDIN));'<CR>
 " }}
 
 " Overrides {{
