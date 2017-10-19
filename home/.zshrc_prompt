@@ -35,6 +35,6 @@ PROMPT=$COLOR_CYAN'%4~'                                  # Start with the curren
 PROMPT=$PROMPT'$(virtualenv_prompt_info)'                # Python thing if using
 PROMPT=$PROMPT'$(git_prompt_info)'                       # Git info
 PROMPT=$PROMPT$COLOR_BLACK'%(1j. jobs:%j.)'$COLOR_RESET  # Number of backgrounded jobs if >0
-PROMPT=$PROMPT$COLOR_BLACK'%(3L. shlvl:%L.)'$COLOR_RESET # Number of nested shells if I'm more than 3 deep. 2nd level is from tmux.
+PROMPT=$PROMPT$COLOR_BLACK'%(4L. shlvl:%L.)'$COLOR_RESET # Number of nested shells if I'm more than 4 deep. 2nd level is from tmux and 3rd is from reattach-to-user-namespace
 PROMPT=$PROMPT$COLOR_BRIGHT_RED'%(?.. %?)'$COLOR_RESET   # Return status of last command if non-zero
 PROMPT=$PROMPT$COLOR_CYAN' $'$COLOR_RESET' '             # Prompt ends with a $ and a space
