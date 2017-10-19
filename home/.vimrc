@@ -138,18 +138,9 @@
         endfunction
         set autoindent      " Indent at the same level of the previous line
         set expandtab       " Tabs are spaces, not tabs
-        call SetTabWidth(4) " Typically I want columns of 4 spaces
+        call SetTabWidth(2) " Typically I want columns of 2 spaces
 
-        let custom_width_filetypes = {
-            \ 'xml' : 2,
-            \ 'html.twig' : 2,
-            \ 'ruby' : 2,
-            \ 'erb' : 2 }
-        for [ft, width] in items(custom_width_filetypes)
-            exec "autocmd FileType " . ft . " call SetTabWidth(" . width . ")"
-        endfor
-
-        " Use list and listchars to highlight undesired whitespace
+        " Use list and listchars to highlight whitespace
         set list
         set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
     " }}
