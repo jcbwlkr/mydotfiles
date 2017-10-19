@@ -51,7 +51,7 @@
     Plugin 'scrooloose/nerdtree'             " IDE like file browser
     Plugin 'jistr/vim-nerdtree-tabs'         " Make NERDTree work better with tabs
     Plugin 'godlygeek/tabular'               " Used to vertically align stuff
-    Plugin 'scrooloose/syntastic'            " Automatic linting/checking on save
+    Plugin 'w0rp/ale'                        " Automatic linting/checking on save
     Plugin 'ctrlpvim/ctrlp.vim'              " Fuzzy file searching
     Plugin 'majutsushi/tagbar'               " Overview of symbols in a file
     Plugin 'scrooloose/nerdcommenter'        " Used to quickly comment/uncomment lines
@@ -262,8 +262,13 @@
         nmap <Leader>F :NERDTreeFind<CR>
     " }}
 
-    " Syntastic {{
-        let g:syntastic_aggregate_errors = 1
+    " Ale {{
+        " Only lint when I save, not as I type.
+        let g:ale_lint_on_text_changed = 'never'
+        " Don't lint html files
+        let g:ale_pattern_options = {
+        \   '.*\.html$': {'ale_enabled': 0},
+        \}
     " }}
 
     " CTRL P {{
@@ -316,10 +321,6 @@
 
     " Use `goimports` instead of `gofmt`
     let g:go_fmt_command = "goimports"
-
-    let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
-    let g:syntastic_go_go_test_args="-tags=integration"
-    let g:syntastic_go_go_build_args="-gcflags '-e'"
 " }}
 
 " JSON {{
