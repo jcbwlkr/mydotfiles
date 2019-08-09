@@ -48,7 +48,7 @@
     " General Plugins
     Plugin 'jcbwlkr/nofrils'                 " My fork of the 'No Frills' minimal color scheme
     Plugin 'NLKNguyen/papercolor-theme'      " The theme I like to use when I want some color
-    Plugin 'scrooloose/nerdtree'             " IDE like file browser
+    Plugin 'scrooloose/nerdtree'             " IDE-like file browser
     Plugin 'jistr/vim-nerdtree-tabs'         " Make NERDTree work better with tabs
     Plugin 'godlygeek/tabular'               " Used to vertically align stuff
     Plugin 'w0rp/ale'                        " Automatic linting/checking on save
@@ -63,7 +63,7 @@
     Plugin 'PeterRincker/vim-argumentative'  " Swap argument order on functions
     Plugin 'editorconfig/editorconfig-vim'   " Respect project specific .editor-config files
     Plugin 'EinfachToll/DidYouMean'          " Prompt to open the correct file when you prematurely hit enter
-    Plugin 'mhinz/vim-signify'               " Show VCS status by line numbers
+    Plugin 'mhinz/vim-signify'               " Show VCS status next to line numbers
     Plugin 'tpope/vim-fugitive'              " Do Git stuff from vim
     Plugin 'mattn/gist-vim'                  " Publish Gists from vim
     Plugin 'mattn/webapi-vim'                " Used by other plugins like mattn/gist
@@ -71,10 +71,16 @@
     Plugin 'diepm/vim-rest-console'          " Explore REST APIs from vim
     Plugin 'vimwiki'                         " Manage a personal Wiki from vim
     Plugin 'beloglazov/vim-online-thesaurus' " Look up synonyms of words from vim
-    " TODO snippets?
+    Plugin 'AnsiEsc.vim'                     " Add command to conceal ansi color codes in log files etc
+    Plugin 'SirVer/ultisnips'                " Use snippets for common patterns
+    Plugin 'Yggdroot/indentLine'             " Support indention guides for spaced files
 
     " Language Specific Plugins
-    Plugin 'fatih/vim-go' " The de facto standard for Go dev in vim
+    Plugin 'fatih/vim-go'              " The de facto standard for Go dev in vim
+    Plugin 'Scuilion/markdown-drawer'  " Get an outline view of Markdown files
+    Plugin 'kylef/apiblueprint.vim'    " Support the API Blueprint specification from apiary.io
+    Plugin 'elixir-editors/vim-elixir' " Add Elixir support for fun
+    Plugin 'mhinz/vim-mix-format'      " Also auto format all Elixir code using `mix format`
 
     call vundle#end() " Done adding plugins
 
@@ -183,7 +189,7 @@
     " }}
 
     set cursorline                  " Highlight current line
-
+    set nomodeline                  " Disable modelines. They're a nice idea but frequently have security issues. See CVE-2019-12735.
     set backspace=indent,eol,start  " Backspace for dummies
     set linespace=0                 " No extra spaces between rows
     set winminheight=0              " Windows can be 0 line high
@@ -193,6 +199,7 @@
     set scrolljump=5                " Lines to scroll when cursor leaves screen
     set scrolloff=2                 " Minimum lines to keep above and below cursor
     set nofoldenable                " Don't auto fold code
+    set foldmethod=indent           " But if I do fold code just do it by indentation level
     set cm=blowfish2                " Use blowfish for VimCrypt
 
     set nowrap                      " Don't wrap long lines
@@ -279,10 +286,12 @@
         let g:ale_pattern_options = {
         \   '.*\.html$': {'ale_enabled': 0},
         \}
+        " Include the name of the linter in the error message
+        let g:ale_echo_msg_format = '(%linter%) %code: %%s'
     " }}
 
     " CTRL P {{
-        let g:ctrlp_working_path_mode = 'ra'
+        let g:ctrlp_working_path_mode = '0'
         nnoremap <silent> <D-t> :CtrlP<CR>
         nnoremap <silent> <D-r> :CtrlPMRU<CR>
         let g:ctrlp_custom_ignore = {
@@ -315,6 +324,9 @@
 
 " Navigation {{
     let b:match_ignorecase = 1
+
+    nmap <Leader>n :cnext<CR>
+    nmap <Leader>p :cprevious<CR>
 " }}
 
 " Go {{
@@ -327,11 +339,22 @@
     au FileType go nmap <leader>v <Plug>(go-vet)
     au FileType go nmap <leader>gd <Plug>(go-doc)
     au FileType go nmap <leader>ga :GoAlternate!<CR>
-    au FileType go nmap <leader>d :GoDef<CR>
     au FileType go nmap <leader>D :GoDescribe<CR>
+
+    " This is already handled by Ctrl-] which is more generally applicable so
+    " I am removing support for <leader>d to break myself of the habit.
+    "au FileType go nmap <leader>d :GoDef<CR>
 
     " Use `goimports` instead of `gofmt`
     let g:go_fmt_command = "goimports"
+
+    " Enable the 'experimental' mode for gofmt so that folds don't get
+    " autoclosed on every write
+    let g:go_fmt_experimental = 1
+" }}
+
+" Elixir {{
+    let g:mix_format_on_save = 1
 " }}
 
 " JSON {{
@@ -343,7 +366,7 @@
 
 " Misc Fun Things {{
     " Vimwiki {{
-        let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vimwiki_html/', 'auto_export': '1'}]
+        let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/'}]
     " }}
 
     " Gist {{
@@ -385,7 +408,7 @@
     nmap <leader>f9 :set foldlevel=9<CR>
 
     " Find merge conflict markers
-    map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+    nmap <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
     " Visual shifting (does not exit Visual mode)
     vnoremap < <gv
@@ -400,6 +423,9 @@
 
     " Just close this buffer, dang it
     nmap <leader>bd :bd!<cr>
+
+    " Shortcut to put a diff
+    nmap <leader>dp :diffput<cr>
 
     " Easier horizontal scrolling
     map zl zL
@@ -442,3 +468,28 @@
         source ~/.vimrc.local
     endif
 " }}
+
+function! GetDiffBuffers()
+    return map(filter(range(1, winnr('$')), 'getwinvar(v:val, "&diff")'), 'winbufnr(v:val)')
+endfunction
+
+function! DiffPutAll()
+    for bufspec in GetDiffBuffers()
+        execute 'diffput' bufspec
+    endfor
+endfunction
+
+
+
+
+
+" Line drawing stuff
+"
+" ─    ━    │    ┃    ┄    ┅    ┆    ┇    ┈    ┉    ┊    ┋    ┌    ┍    ┎    ┏
+" ┐    ┑    ┒    ┓    └    ┕    ┖    ┗    ┘    ┙    ┚    ┛    ├    ┝    ┞    ┟
+" ┠    ┡    ┢    ┣    ┤    ┥    ┦    ┧    ┨    ┩    ┪    ┫    ┬    ┭    ┮    ┯
+" ┰    ┱    ┲    ┳    ┴    ┵    ┶    ┷    ┸    ┹    ┺    ┻    ┼    ┽    ┾    ┿
+" ╀    ╁    ╂    ╃    ╄    ╅    ╆    ╇    ╈    ╉    ╊    ╋    ╌    ╍    ╎    ╏
+" ═    ║    ╒    ╓    ╔    ╕    ╖    ╗    ╘    ╙    ╚    ╛    ╜    ╝    ╞    ╟
+" ╠    ╡    ╢    ╣    ╤    ╥    ╦    ╧    ╨    ╩    ╪    ╫    ╬    ╭    ╮    ╯
+" ╰    ╱    ╲    ╳    ╴    ╵    ╶    ╷    ╸    ╹    ╺    ╻    ╼    ╽    ╾    ╿
