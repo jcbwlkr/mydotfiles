@@ -6,10 +6,13 @@
 unalias gb
 
 alias 'tmux'='tmux -2'
+alias 'dirdiff'='git diff -p --stat --no-index'
+alias 'dirdiff'='git diff -p --stat -w --no-index'
 
 # Platform specific aliases
 case "$(uname -s)" in
    Darwin)
+        alias 'tree'='tree -CF --dirsfirst'
      ;;
 
    Linux)

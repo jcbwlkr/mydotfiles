@@ -2,6 +2,11 @@
 # Style My prompt #
 ###################
 
+if [[ "${TERM_PROGRAM}" == "vscode" ]]; then
+  PROMPT='[%1~] $ '
+  return
+fi
+
 # Define some variables for referencing color codes like $COLOR_WHITE and
 # $COLOR_BRIGHT_RED. The special variable $COLOR_DEBUG can be echoed at any
 # time to see the different color options.

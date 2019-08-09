@@ -2,9 +2,18 @@
 # Functions to enhance my zsh experience #
 ##########################################
 
-# Runs all arguments then uses "say" to audibly report success or failure
-function doTest {
-    $@ && say "Tests passed" || say "Tests failed"
+# Uses `say` to announce if the previous job succeeded or failed. Use with long
+# running tasks like
+#	longTask; report
+function report {
+  last=$?
+  success="successfully"
+  if [[ $last -ne 0 ]]; then
+    success="with errors"
+  fi
+  say "job completed ${success}"
+  echo "job completed ${success}"
+  return $last
 }
 
 # call `upto foo` to cd up to a parent folder matching the regular expression
@@ -43,3 +52,9 @@ function strtotime() {
 
 # Little helper function for getting sraight to a project's vrc file
 function vrc() { mkdir -p notes; vim notes/vrc.rest }
+
+# Wait four minutes for tea to steep
+function teatime() {
+  sleep 240
+  say "Tea is done"
+}
