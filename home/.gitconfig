@@ -17,8 +17,11 @@
 [alias]
 	; Show effective changes between this branch and the remote master branch.
 	; Used when reviewing a PR with lots of commits/merges.
-	review = !git diff --stat -p -w $(git merge-base HEAD origin/master)
+	review = !git diff --stat -p -w $(git merge-base HEAD origin/master) -- . ':!vendor'
+	dirdiff = diff -p --stat -w --no-index
 [http]
 	cookiefile = /Users/jwalker/.gitcookies
 [rerere]
 	enabled = true
+[help]
+	autocorrect = 1
