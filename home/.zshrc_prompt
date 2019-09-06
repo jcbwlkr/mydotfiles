@@ -20,7 +20,8 @@ for COLOR in CYAN WHITE YELLOW MAGENTA BLACK BLUE RED DEFAULT GREEN GREY; do
 done
 COLOR_RESET="%{$reset_color%}"
 
-# The omz git plugin gives us the function git_prompt_info but 
+# The OMZ git plugin gives us the function git_prompt_info but I want to
+# customize how it works. It defines a bunch of env vars you can set.
 ZSH_THEME_GIT_PROMPT_PREFIX=" ${COLOR_RESET}${COLOR_BLUE}(⎇ "
 ZSH_THEME_GIT_PROMPT_SUFFIX="${COLOR_RESET}${COLOR_BLUE})"
 ZSH_THEME_GIT_PROMPT_DIRTY="${COLOR_RESET}${COLOR_RED} ✘${COLOR_RESET}"
@@ -36,10 +37,10 @@ function virtualenv_prompt_info() {
 }
 
 # Build up actual prompt
-PROMPT=$COLOR_CYAN'%4~'                                  # Start with the current path
-PROMPT=$PROMPT'$(virtualenv_prompt_info)'                # Python thing if using
-PROMPT=$PROMPT'$(git_prompt_info)'                       # Git info
-PROMPT=$PROMPT$COLOR_BLACK'%(1j. jobs:%j.)'$COLOR_RESET  # Number of backgrounded jobs if >0
-PROMPT=$PROMPT$COLOR_BLACK'%(4L. shlvl:%L.)'$COLOR_RESET # Number of nested shells if I'm more than 4 deep. 2nd level is from tmux and 3rd is from reattach-to-user-namespace
-PROMPT=$PROMPT$COLOR_BRIGHT_RED'%(?.. %?)'$COLOR_RESET   # Return status of last command if non-zero
-PROMPT=$PROMPT$COLOR_CYAN' $'$COLOR_RESET' '             # Prompt ends with a $ and a space
+PROMPT=$COLOR_CYAN'%3~'                                  # Start with the current path limited to 3 dirs.
+PROMPT=$PROMPT'$(virtualenv_prompt_info)'                # Python thing if needed.
+PROMPT=$PROMPT'$(git_prompt_info)'                       # Git info. The function comes from OMZ.
+PROMPT=$PROMPT$COLOR_YELLOW'%(1j. jobs:%j.)'$COLOR_RESET  # Number of backgrounded jobs if >=1.
+PROMPT=$PROMPT$COLOR_YELLOW'%(3L. shlvl:%L.)'$COLOR_RESET # Number of nested shells if I'm 3 or more deep. 2nd level is from tmux.
+PROMPT=$PROMPT$COLOR_BRIGHT_RED'%(?.. %?)'$COLOR_RESET   # Return status of last command if non-zero.
+PROMPT=$PROMPT$COLOR_CYAN' $'$COLOR_RESET' '             # Prompt ends with a $ and a space.

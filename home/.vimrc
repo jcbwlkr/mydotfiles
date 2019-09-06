@@ -46,8 +46,9 @@
 
 " Plugins {{
     " General Plugins
+    Plugin 'gmoe/vim-espresso'               " My favorite dark theme.
+    Plugin 'NLKNguyen/papercolor-theme'      " My favorite light theme.
     Plugin 'jcbwlkr/nofrils'                 " My fork of the 'No Frills' minimal color scheme
-    Plugin 'NLKNguyen/papercolor-theme'      " The theme I like to use when I want some color
     Plugin 'scrooloose/nerdtree'             " IDE-like file browser
     Plugin 'jistr/vim-nerdtree-tabs'         " Make NERDTree work better with tabs
     Plugin 'godlygeek/tabular'               " Used to vertically align stuff
@@ -73,7 +74,7 @@
     Plugin 'beloglazov/vim-online-thesaurus' " Look up synonyms of words from vim
     Plugin 'AnsiEsc.vim'                     " Add command to conceal ansi color codes in log files etc
     Plugin 'SirVer/ultisnips'                " Use snippets for common patterns
-    Plugin 'Yggdroot/indentLine'             " Support indention guides for spaced files
+    "Plugin 'Yggdroot/indentLine'             " Support indention guides for spaced files
 
     " Language Specific Plugins
     Plugin 'fatih/vim-go'              " The de facto standard for Go dev in vim
@@ -237,8 +238,10 @@
     " }}
 
     " Colorscheme {{
-        set background=light
-        colorscheme PaperColor
+        set t_Co=256
+        set background=dark
+        colorscheme espresso
+        "colorscheme PaperColor
         "colorscheme nofrils-light
     " }}
 " }}
