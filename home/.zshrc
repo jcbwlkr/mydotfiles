@@ -36,11 +36,10 @@ fi
 export GOPATH=$(go env GOPATH)
 
 # Define customizations to $PATH
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin                        # Local binaries I might make
 export PATH=$PATH:$GOPATH/bin                                       # Make `go install`ed binaries just work
-export PATH=$PATH:$(yarn global bin)                                # Globally installed node things
-export PATH=$PATH:/usr/local/heroku/bin                             # Added by the Heroku Toolbelt
-export PATH=$PATH:/Users/jwalker/Library/Android/sdk/platform-tools # Android tools
+#export PATH=$PATH:$HOME/bin:$HOME/.local/bin                        # Local binaries I might make
+#export PATH=$PATH:$(yarn global bin)                                # Globally installed node things
+#export PATH=$PATH:/Users/jwalker/Library/Android/sdk/platform-tools # Android tools
 
 # Hook to make local changes
 [ -f ~/.zshrc_local ] && . ~/.zshrc_local || true
