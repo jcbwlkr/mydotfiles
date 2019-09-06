@@ -3,16 +3,16 @@
 ############################
 
 # I don't want this alias that comes from the git plugin
-unalias gb
+alias gb > /dev/null || unalias gb
 
 alias 'tmux'='tmux -2'
-alias 'dirdiff'='git diff -p --stat --no-index'
 alias 'dirdiff'='git diff -p --stat -w --no-index'
 
 # Platform specific aliases
 case "$(uname -s)" in
    Darwin)
-        alias 'tree'='tree -CF --dirsfirst'
+        alias 'tree'='tree -CF --dirsfirst -I vendor'
+        alias 'll'='tree -L 1'
      ;;
 
    Linux)
