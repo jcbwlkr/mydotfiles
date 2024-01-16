@@ -8,6 +8,10 @@ alias gb > /dev/null || unalias gb
 alias 'tmux'='tmux -2'
 alias 'dirdiff'='git diff -p --stat -w --no-index'
 
+# jl is a "json to less" pager. Sends input through jq with color coding forced
+# on then forwards to less with RAW color codes enabled.
+alias 'jl'='jq -C . | less -R'
+
 # Platform specific aliases
 case "$(uname -s)" in
    Darwin)
@@ -21,3 +25,15 @@ case "$(uname -s)" in
         hash vimx && alias 'vim'='vimx'
      ;;
 esac
+
+# clone a udacity repos
+uget() {
+  GO111MODULE=off go get github.com/udacity/$@;
+  cd $(go env GOPATH)/src/github.com/udacity/$@;
+  git config --add user.email jacob.walker@udacity.com
+}
+
+# switch to udacity root
+cdu() {
+  cd $(go env GOPATH)/src/github.com/udacity
+}

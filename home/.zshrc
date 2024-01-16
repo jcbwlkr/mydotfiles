@@ -10,7 +10,7 @@ DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git go rvm docker kubectl mix-fast)
+plugins=(git rvm docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -35,9 +35,12 @@ fi
 # Use the default gopath but explicitly set it because some tools expect it
 export GOPATH=$(go env GOPATH)
 
+# Don't try to validate private udacity modules
+export GOPRIVATE=github.com/udacity
+
 # Define customizations to $PATH
 export PATH=$PATH:$GOPATH/bin                                       # Make `go install`ed binaries just work
-#export PATH=$PATH:$HOME/bin:$HOME/.local/bin                        # Local binaries I might make
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin                        # Local binaries I might make
 #export PATH=$PATH:$(yarn global bin)                                # Globally installed node things
 #export PATH=$PATH:/Users/jwalker/Library/Android/sdk/platform-tools # Android tools
 
@@ -47,3 +50,31 @@ export PATH=$PATH:$GOPATH/bin                                       # Make `go i
 # Remove duplicates from PATH. Found on StackOverflow:
 # https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command/149054#149054
 export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+
+#########################################################################################
+# Load nvm
+#########################################################################################
+# Loading nvm was taking 5+ seconds every time I open a shell (which I do
+# often) so I'm using this lazy loading approach.
+#########################################################################################
+lazy_load_nvm() {
+  unset -f node nvm npm
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+}
+
+nvm() {
+  lazy_load_nvm
+  nvm $@
+}
+
+node() {
+  lazy_load_nvm
+  node $@
+}
+
+npm() {
+  lazy_load_nvm
+  npm $@
+}

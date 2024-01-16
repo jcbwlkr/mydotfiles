@@ -58,3 +58,12 @@ function teatime() {
   sleep 240
   say "Tea is done"
 }
+
+function dbopen() {
+  baton get env "${1}" "${2}" | envparse -format=db | xargs open
+}
+
+function cacheopen() {
+  uri=$(baton get env "${1}" "${2}" | envparse -format cache)
+  test $? -eq 0 && redis-cli -u "${uri}"
+}

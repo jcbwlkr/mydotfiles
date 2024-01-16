@@ -74,14 +74,17 @@
     Plugin 'beloglazov/vim-online-thesaurus' " Look up synonyms of words from vim
     Plugin 'AnsiEsc.vim'                     " Add command to conceal ansi color codes in log files etc
     Plugin 'SirVer/ultisnips'                " Use snippets for common patterns
+    Plugin 'junegunn/goyo.vim'               " zen mode to focus on one file
+    Plugin 'darfink/vim-plist'
     "Plugin 'Yggdroot/indentLine'             " Support indention guides for spaced files
 
     " Language Specific Plugins
-    Plugin 'fatih/vim-go'              " The de facto standard for Go dev in vim
-    Plugin 'Scuilion/markdown-drawer'  " Get an outline view of Markdown files
-    Plugin 'kylef/apiblueprint.vim'    " Support the API Blueprint specification from apiary.io
-    Plugin 'elixir-editors/vim-elixir' " Add Elixir support for fun
-    Plugin 'mhinz/vim-mix-format'      " Also auto format all Elixir code using `mix format`
+    Plugin 'fatih/vim-go'               " The de facto standard for Go dev in vim
+    Plugin 'tpope/vim-rails'            "
+    Plugin 'Scuilion/markdown-drawer'   " Get an outline view of Markdown files
+    Plugin 'kylef/apiblueprint.vim'     " Support the API Blueprint specification from apiary.io
+    Plugin 'jparise/vim-graphql'        " Syntax support for graphql files
+    Plugin 'leafgarland/typescript-vim' " Syntax support for TypeScript
 
     call vundle#end() " Done adding plugins
 
@@ -166,7 +169,7 @@
     set norelativenumber
 
     set timeout ttimeoutlen=50 " TODO What is this for exactly and is this the setting I want?
-    set mouse=                 " I don't want mouse support
+    set mouse=a                " Mouse support is nice sometimes
     set pastetoggle=<F12>      " F12 to enable pastetoggle (sane indentation on pastes)
     set nospell                " Spell checking off
 
@@ -240,7 +243,18 @@
     " Colorscheme {{
         set t_Co=256
         set background=dark
+
+        " Set color scheme as espresso but tweak it a bit. These tweaks are in
+        " a hooked function because Goyo will switch between color schemes as
+        " needed and I want to tweaks to be reapplied when I switch back.
+        function! s:tweak_espresso_colors()
+          hi Normal ctermbg=none
+          hi Comment ctermbg=none
+          "hi Search ctermbg=153 ctermfg=255
+        endfunction
+        autocmd! ColorScheme espresso call s:tweak_espresso_colors()
         colorscheme espresso
+
         "colorscheme PaperColor
         "colorscheme nofrils-light
     " }}
@@ -248,6 +262,11 @@
 
 " Utility {{
     let g:ackprg="ack -H --nocolor --nogroup --column"
+
+    " Fugitive {{
+      " Let q close the :Gblame window
+      autocmd FileType fugitiveblame nmap <buffer> q gq
+    " }}
 
     " Vim REST Console {{
         let g:vrc_trigger = '<leader>r'
@@ -351,6 +370,11 @@
     " Use `goimports` instead of `gofmt`
     let g:go_fmt_command = "goimports"
 
+    " Put my company's imports after 3rd party imports
+    let g:go_fmt_options = {
+      \ 'goimports': '-local github.com/udacity',
+      \ }
+
     " Enable the 'experimental' mode for gofmt so that folds don't get
     " autoclosed on every write
     let g:go_fmt_experimental = 1
@@ -447,6 +471,9 @@
     " Macro to condense two lines of an if statement into one
     let @e='^iif Jxxr;'
 
+    " Macro to turn 'func main' into 'func main' and 'func run'
+    let @r='oif err := erkbkbrun(); err != nil {log.Fatal(err)}}func run() error {ýa'
+
     " Macro to change the contents of some quotes with a new uuid
     let @i='ci"k:.!uuidgengu$kJxJx'
 
@@ -482,17 +509,10 @@ function! DiffPutAll()
     endfor
 endfunction
 
+map <leader>uc :set makeprg=ucheck-go\ ./... <CR>:make<CR>:copen<CR>
 
+autocmd BufRead /home/jwalker/go/src/github.com/udacity/knowledge/*.go
+      \ :GoGuruScope github.com/udacity/knowledge
 
-
-
-" Line drawing stuff
-"
-" ─    ━    │    ┃    ┄    ┅    ┆    ┇    ┈    ┉    ┊    ┋    ┌    ┍    ┎    ┏
-" ┐    ┑    ┒    ┓    └    ┕    ┖    ┗    ┘    ┙    ┚    ┛    ├    ┝    ┞    ┟
-" ┠    ┡    ┢    ┣    ┤    ┥    ┦    ┧    ┨    ┩    ┪    ┫    ┬    ┭    ┮    ┯
-" ┰    ┱    ┲    ┳    ┴    ┵    ┶    ┷    ┸    ┹    ┺    ┻    ┼    ┽    ┾    ┿
-" ╀    ╁    ╂    ╃    ╄    ╅    ╆    ╇    ╈    ╉    ╊    ╋    ╌    ╍    ╎    ╏
-" ═    ║    ╒    ╓    ╔    ╕    ╖    ╗    ╘    ╙    ╚    ╛    ╜    ╝    ╞    ╟
-" ╠    ╡    ╢    ╣    ╤    ╥    ╦    ╧    ╨    ╩    ╪    ╫    ╬    ╭    ╮    ╯
-" ╰    ╱    ╲    ╳    ╴    ╵    ╶    ╷    ╸    ╹    ╺    ╻    ╼    ╽    ╾    ╿
+autocmd BufRead /home/jwalker/go/src/github.com/udacity/gamification/*.go
+      \ :GoGuruScope github.com/udacity/gamification

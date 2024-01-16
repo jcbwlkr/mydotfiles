@@ -26,4 +26,6 @@
 [help]
 	autocorrect = 1
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+	insteadOf = https://github.com
+[url "ssh://git@heroku.com/"]
+	insteadOf = https://git.heroku.com/
