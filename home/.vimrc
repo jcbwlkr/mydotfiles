@@ -48,6 +48,7 @@
     " General Plugins
     Plugin 'gmoe/vim-espresso'               " My favorite dark theme.
     Plugin 'NLKNguyen/papercolor-theme'      " My favorite light theme.
+    Plugin 'cocopon/iceberg.vim'             " Another fun dark theme
     Plugin 'jcbwlkr/nofrils'                 " My fork of the 'No Frills' minimal color scheme
     Plugin 'scrooloose/nerdtree'             " IDE-like file browser
     Plugin 'jistr/vim-nerdtree-tabs'         " Make NERDTree work better with tabs
@@ -243,6 +244,7 @@
     " Colorscheme {{
         set t_Co=256
         set background=dark
+        "set termguicolors
 
         " Set color scheme as espresso but tweak it a bit. These tweaks are in
         " a hooked function because Goyo will switch between color schemes as
@@ -254,9 +256,9 @@
         endfunction
         autocmd! ColorScheme espresso call s:tweak_espresso_colors()
         colorscheme espresso
-
         "colorscheme PaperColor
         "colorscheme nofrils-light
+        "colorscheme iceberg
     " }}
 " }}
 
@@ -294,7 +296,7 @@
         let NERDTreeMouseMode=2
         let NERDTreeShowHidden=1
         let NERDTreeKeepTreeInNewTab=1
-        let NERDTreeSortOrder=['\/$', '^main.go$', '^main_test.go$', '^[A-Z].*\.go$', '\.go$']
+        let NERDTreeSortOrder=['\/$', '^main.go$', '^main_test.go$'] ", '^[A-Z].*\.go$', '\.go$']
         let g:nerdtree_tabs_open_on_gui_startup=0
 
         nmap <Leader>e :NERDTreeToggle<CR>
@@ -310,6 +312,11 @@
         \}
         " Include the name of the linter in the error message
         let g:ale_echo_msg_format = '(%linter%) %code: %%s'
+
+        " Don't put virtual text at the end of offending lines
+        let g:ale_virtualtext_cursor = 'disabled'
+
+        let g:ale_go_golangci_lint_package = 1
     " }}
 
     " CTRL P {{

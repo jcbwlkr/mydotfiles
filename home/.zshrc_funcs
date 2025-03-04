@@ -65,5 +65,5 @@ function dbopen() {
 
 function cacheopen() {
   uri=$(baton get env "${1}" "${2}" | envparse -format cache)
-  test $? -eq 0 && redis-cli -u "${uri}"
+  test $? -eq 0 && redis-cli -n 1 -u "${uri}"
 }

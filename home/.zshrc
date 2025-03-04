@@ -3,6 +3,7 @@
 ###################
 
 # Path to your oh-my-zsh configuration.
+export DISABLE_UPDATE_PROMPT=true
 ZSH=$HOME/.oh-my-zsh
 
 DISABLE_AUTO_TITLE="true"
@@ -22,14 +23,7 @@ source $HOME/.zshrc_prompt  # Style my prompt
 source $HOME/.zshrc_funcs   # Some useful homemade functions
 source $HOME/.zshrc_aliases # Define some aliases
 
-# Define $EDITOR. Use vimx when available for better X integration
-if [ -e /usr/bin/vimx ]; then
-    export EDITOR=/usr/bin/vimx
-elif [ -e /usr/local/bin/vim ]; then
-    export EDITOR=/usr/local/bin/vim
-elif [ -e /usr/bin/vim ]; then
-    export EDITOR=/usr/bin/vim
-fi
+export EDITOR=vim
 
 
 # Use the default gopath but explicitly set it because some tools expect it
@@ -78,3 +72,7 @@ npm() {
   lazy_load_nvm
   npm $@
 }
+
+# Load rbenv if it's installed
+eval "$(hash rbenv && rbenv init - zsh)"
+export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
